@@ -22,6 +22,8 @@
         <Fields Id="Get Current Map Trigger" Type="String"/>
         <Fields Id="Is Story Map Trigger" Type="String"/>
         <Fields Id="Get Last Successful Mission Trigger" Type="String"/>
+        <Fields Id="Get Number Of Missions Completed Trigger" Type="String"/>
+        <Fields Id="Update Tech Tree For Army Category Trigger" Type="String"/>
         <Instances Id="[Default]"/>
         <Instances Id="Base">
             <String String="Conscription">
