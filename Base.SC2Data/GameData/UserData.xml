@@ -15,7 +15,7 @@
     </CUser>
     <CUser id="ConscriptionModule">
         <Fields Id="Write Conscription To Bank Trigger" Type="String"/>
-        <Fields Id="Read Conscription From Bank Trigger" Type="String"/>
+        <Fields Id="Load Conscription From Bank Trigger" Type="String"/>
         <Fields Id="Get Bank Section Name Trigger" Type="String"/>
         <Fields Id="Conscription Bank Section" Type="String"/>
         <Fields Id="Get Campaign Bank Trigger" Type="String"/>
@@ -24,6 +24,7 @@
         <Fields Id="Get Last Successful Mission Trigger" Type="String"/>
         <Fields Id="Get Number Of Missions Completed Trigger" Type="String"/>
         <Fields Id="Update Tech Tree For Army Category Trigger" Type="String"/>
+        <Fields Id="Get Available Credits Trigger" Type="String"/>
         <Instances Id="[Default]"/>
         <Instances Id="Base">
             <String String="Conscription">

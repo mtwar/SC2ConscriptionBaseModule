@@ -1,0 +1,1113 @@
+include "TriggerLibs/NativeLib"
+
+include "LibConB_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Conscription
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libConB_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool libConB_InitVariables_completed = false;
+
+void libConB_InitVariables () {
+    if (libConB_InitVariables_completed) {
+        return;
+    }
+
+    libConB_InitVariables_completed = true;
+
+    libConB_gv_conscriptionBankData.lv_section = "";
+    libConB_gv_conscriptionBankData.lv_key = "";
+    libConB_gv_conscriptionBankSectionName = "";
+}
+
+// Presets
+string libConB_ge_ConscriptionActionType_Ident (int lp_val) {
+         if (lp_val == libConB_ge_ConscriptionActionType_None) { return "None"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_Unlock) { return "Unlock"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_Lock) { return "Lock"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_Buy) { return "Buy"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_Refund) { return "Refund"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_Override) { return "Override"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_Save) { return "Save"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_Load) { return "Load"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_SaveAll) { return "SaveAll"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_LoadAll) { return "LoadAll"; }
+    return null;
+}
+
+string libConB_ge_ConscriptionUnitState_Ident (int lp_val) {
+         if (lp_val == libConB_ge_ConscriptionUnitState_Locked) { return "Locked"; }
+    else if (lp_val == libConB_ge_ConscriptionUnitState_Available) { return "Available"; }
+    else if (lp_val == libConB_ge_ConscriptionUnitState_Purchased) { return "Purchased"; }
+    else if (lp_val == libConB_ge_ConscriptionUnitState_None) { return "None"; }
+    return null;
+}
+
+// Functions
+int libConB_gf_ParseConscriptionActionTypeString (string lp_actionTypeName) {
+    // Automatic Variable Declarations
+    string auto578113FE_val;
+
+    // Implementation
+    auto578113FE_val = StringCase(lp_actionTypeName, false);
+    if (auto578113FE_val == StringCase(libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_Unlock), false)) {
+        return libConB_ge_ConscriptionActionType_Unlock;
+    }
+    else if (auto578113FE_val == StringCase(libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_Lock), false)) {
+        return libConB_ge_ConscriptionActionType_Lock;
+    }
+    else if (auto578113FE_val == StringCase(libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_Buy), false)) {
+        return libConB_ge_ConscriptionActionType_Buy;
+    }
+    else if (auto578113FE_val == StringCase(libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_Refund), false)) {
+        return libConB_ge_ConscriptionActionType_Refund;
+    }
+    else if (auto578113FE_val == StringCase(libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_Override), false)) {
+        return libConB_ge_ConscriptionActionType_Override;
+    }
+    else if (auto578113FE_val == StringCase(libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_SaveAll), false)) {
+        return libConB_ge_ConscriptionActionType_SaveAll;
+    }
+    else if (auto578113FE_val == StringCase(libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_LoadAll), false)) {
+        return libConB_ge_ConscriptionActionType_LoadAll;
+    }
+    else {
+        return libConB_ge_ConscriptionActionType_None;
+    }
+}
+
+int libConB_gf_GetAvailableCredits () {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_creditsAvailable = 0;
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Get Bank Section Name Trigger", 1), true, true);
+    return libConB_gv_creditsAvailable;
+}
+
+string libConB_gf_UnlockConscription (string lp_conscription) {
+    // Variable Declarations
+    int lv_currentState;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_currentState = libConB_gf_ParseConscriptionUnitState(UserDataGetInt("Conscription", lp_conscription, "State", 1));
+
+    // Implementation
+    if ((lv_currentState != libConB_ge_ConscriptionUnitState_Locked)) {
+        return ("unit type " + lp_conscription + " already set to " + libConB_ge_ConscriptionUnitState_Ident(lv_currentState));
+    }
+
+    libConB_gf_SetConscriptionState(lp_conscription, libConB_ge_ConscriptionUnitState_Available);
+    if ((UserDataGetInt("Conscription", lp_conscription, "Price", 1) == 0)) {
+        return libConB_gf_BuyConscription(lp_conscription);
+    }
+    else {
+        libConB_gf_ApplyConscriptionToTechTree(lp_conscription);
+    }
+    return "";
+}
+
+string libConB_gf_LockConscription (string lp_conscription) {
+    // Variable Declarations
+    int lv_currentState;
+    string lv_errorString;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_currentState = libConB_gf_ParseConscriptionUnitState(UserDataGetInt("Conscription", lp_conscription, "State", 1));
+    lv_errorString = "";
+
+    // Implementation
+    if ((lv_currentState == libConB_ge_ConscriptionUnitState_Purchased)) {
+        lv_errorString = libConB_gf_RefundConscription(lp_conscription);
+        if ((StringEqual(lv_errorString, "", c_stringNoCase) == false)) {
+            return lv_errorString;
+        }
+
+    }
+
+    libConB_gf_SetConscriptionState(lp_conscription, libConB_ge_ConscriptionUnitState_Locked);
+    libConB_gf_ApplyConscriptionToTechTree(lp_conscription);
+    return "";
+}
+
+string libConB_gf_BuyConscription (string lp_conscription) {
+    // Variable Declarations
+    int lv_currentState;
+    string lv_errorString;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_currentState = libConB_gf_ParseConscriptionUnitState(UserDataGetInt("Conscription", lp_conscription, "State", 1));
+    lv_errorString = "";
+
+    // Implementation
+    if ((lv_currentState == libConB_ge_ConscriptionUnitState_Purchased)) {
+        return "unit type " + lp_conscription + " already set to " + libConB_ge_ConscriptionUnitState_Ident(lv_currentState);
+    }
+
+    if ((lv_currentState == libConB_ge_ConscriptionUnitState_Locked)) {
+        return "unit type " + lp_conscription + " is " + libConB_ge_ConscriptionUnitState_Ident(lv_currentState);
+    }
+
+    if ((libConB_gf_GetAvailableCredits() < UserDataGetInt("Conscription", lp_conscription, "Price", 1))) {
+        return "insufficient credits to buy " + lp_conscription;
+    }
+
+    libConB_gf_SetConscriptionState(lp_conscription, libConB_ge_ConscriptionUnitState_Purchased);
+    libConB_gf_ApplyConscriptionToTechTree(lp_conscription);
+    return "";
+}
+
+string libConB_gf_RefundConscription (string lp_conscription) {
+    // Variable Declarations
+    int lv_currentState;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_currentState = libConB_gf_ParseConscriptionUnitState(UserDataGetInt("Conscription", lp_conscription, "State", 1));
+
+    // Implementation
+    if ((lv_currentState != libConB_ge_ConscriptionUnitState_Purchased)) {
+        return ("unit type " + lp_conscription + " already set to " + libConB_ge_ConscriptionUnitState_Ident(lv_currentState));
+    }
+
+    libConB_gf_SetConscriptionState(lp_conscription, libConB_ge_ConscriptionUnitState_Available);
+    libConB_gf_ApplyConscriptionToTechTree(lp_conscription);
+    return "";
+}
+
+string libConB_gf_OverrideConscriptionState (string lp_unitType, int lp_state) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
+
+    // Implementation
+    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+        libConB_gf_SetConscriptionState(lv_conscription, lp_state);
+        libConB_gf_ApplyConscriptionToTechTree(lv_conscription);
+        return "";
+    }
+    return ("conscription not configured for unit type " + lp_unitType);
+}
+
+bool libConB_gf_ConscriptionPurchased (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (UserDataGetInt("Conscription", lp_conscription, "State", 1) == libConB_ge_ConscriptionUnitState_Purchased);
+}
+
+int libConB_gf_ConscriptionPrice (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return UserDataGetInt("Conscription", lp_conscription, "Price", 1);
+}
+
+string libConB_gf_GetConscriptionEntryForUnit (string lp_unitType) {
+    // Variable Declarations
+    string lv_currentConscription;
+    bool lv_found;
+    string lv_unitConscriptionData;
+
+    // Automatic Variable Declarations
+    int autoB62AEFA7_ai;
+    int autoB62AEFA7_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    autoB62AEFA7_ai = 1;
+    autoB62AEFA7_ae = UserDataInstanceCount("Conscription")+1;
+    while (autoB62AEFA7_ai < autoB62AEFA7_ae) {
+        lv_currentConscription = UserDataInstance("Conscription", autoB62AEFA7_ai);
+        autoB62AEFA7_ai = autoB62AEFA7_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_currentConscription)) {
+            continue;
+        }
+        if ((libConB_gf_ParseUnitTypeFromString((lv_currentConscription)) == lp_unitType)) {
+            return lv_currentConscription;
+        }
+
+    }
+    TriggerDebugOutput(1, StringToText(("unit " + lp_unitType + " not found in the Conscription table")), true);
+    return null;
+}
+
+string libConB_gf_UnlockConscriptionUnit (string lp_unitType) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
+
+    // Implementation
+    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+        return libConB_gf_UnlockConscription(lv_conscription);
+    }
+    return ("conscription not configured for unit type " + lp_unitType);
+}
+
+string libConB_gf_LockConscriptionUnit (string lp_unitType) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
+
+    // Implementation
+    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+        return libConB_gf_LockConscription(lv_conscription);
+    }
+    return ("conscription not configured for unit type " + lp_unitType);
+}
+
+string libConB_gf_BuyConscriptionUnit (string lp_unitType) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
+
+    // Implementation
+    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+        return libConB_gf_BuyConscription(lv_conscription);
+    }
+    return ("conscription not configured for unit type " + lp_unitType);
+}
+
+string libConB_gf_RefundConscriptionUnit (string lp_unitType) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
+
+    // Implementation
+    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+        return libConB_gf_RefundConscription(lv_conscription);
+    }
+    return ("conscription not configured for unit type " + lp_unitType);
+}
+
+string libConB_gf_ExecuteConscriptionActionString (string lp_actionTypeName, string lp_unitTypeName, string lp_conscriptionStateName, string lp_sectionName) {
+    // Variable Declarations
+    int lv_actionType;
+    string lv_unitType;
+    int lv_state;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_state = libConB_ge_ConscriptionUnitState_Locked;
+
+    // Implementation
+    lv_actionType = libConB_gf_ParseConscriptionActionTypeString(lp_actionTypeName);
+    if ((lv_actionType == libConB_ge_ConscriptionActionType_None)) {
+        return "invalid action type name " + lp_actionTypeName;
+    }
+
+    if ((lv_actionType == libConB_ge_ConscriptionActionType_SaveAll)) {
+        libConB_gf_SaveAllConscriptionsToCampaignBank(lp_sectionName);
+        return "";
+    }
+
+    if ((lv_actionType == libConB_ge_ConscriptionActionType_LoadAll)) {
+        return "not implemented";
+    }
+
+    lv_unitType = libConB_gf_ParseUnitTypeFromString(lp_unitTypeName);
+    if ((lv_unitType == null)) {
+        return "invalid unit type name " + lp_unitTypeName;
+    }
+
+    if ((lv_actionType != libConB_ge_ConscriptionActionType_Override)) {
+        return libConB_gf_ExecuteConscriptionAction(lv_actionType, lv_unitType);
+    }
+
+    lv_state = libConB_gf_ParseConscriptionUnitStateString(lp_conscriptionStateName);
+    if ((lv_state == libConB_ge_ConscriptionUnitState_None)) {
+        return "invalid conscription unit state name " + lp_conscriptionStateName;
+    }
+
+    return libConB_gf_OverrideConscriptionState(lv_unitType, lv_state);
+}
+
+string libConB_gf_ExecuteConscriptionAction (int lp_actionType, string lp_unitType) {
+    // Variable Declarations
+    string lv_errorString;
+
+    // Automatic Variable Declarations
+    int autoC1FD8630_val;
+
+    // Variable Initialization
+    lv_errorString = "";
+
+    // Implementation
+    autoC1FD8630_val = lp_actionType;
+    if (autoC1FD8630_val == libConB_ge_ConscriptionActionType_Unlock) {
+        return libConB_gf_UnlockConscriptionUnit(lp_unitType);
+    }
+    else if (autoC1FD8630_val == libConB_ge_ConscriptionActionType_Lock) {
+        return libConB_gf_LockConscriptionUnit(lp_unitType);
+    }
+    else if (autoC1FD8630_val == libConB_ge_ConscriptionActionType_Buy) {
+        return libConB_gf_BuyConscriptionUnit(lp_unitType);
+    }
+    else if (autoC1FD8630_val == libConB_ge_ConscriptionActionType_Refund) {
+        return libConB_gf_RefundConscriptionUnit(lp_unitType);
+    }
+    else {
+        return "action type not implemented";
+    }
+}
+
+void libConB_gf_SaveAllConscriptionsToCampaignMapBank (string lp_map) {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gf_SaveAllConscriptionsToCampaignBank(libConB_gf_GetBankSectionName(lp_map));
+}
+
+void libConB_gf_SaveAllConscriptionsToCampaignBank (string lp_section) {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gf_SaveAllConscriptionsToBank(libConB_gf_GetCampaignBank(), lp_section);
+}
+
+void libConB_gf_SaveAllConscriptionsToBank (bank lp_bank, string lp_section) {
+    // Variable Declarations
+    string lv_currentConscription;
+
+    // Automatic Variable Declarations
+    int auto55FF28C5_ai;
+    int auto55FF28C5_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    BankLoad(BankName(lp_bank), 1);
+    BankSectionRemove(lp_bank, lp_section);
+    BankSectionCreate(lp_bank, lp_section);
+    auto55FF28C5_ai = 1;
+    auto55FF28C5_ae = UserDataInstanceCount("Conscription")+1;
+    while (auto55FF28C5_ai < auto55FF28C5_ae) {
+        lv_currentConscription = UserDataInstance("Conscription", auto55FF28C5_ai);
+        auto55FF28C5_ai = auto55FF28C5_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_currentConscription)) {
+            continue;
+        }
+        libConB_gf_WriteConscriptionToBank(lp_bank, lp_section, lv_currentConscription);
+    }
+    BankSave(lp_bank);
+}
+
+void libConB_gf_LoadAllConscriptionsFromBank (bank lp_bank, string lp_section) {
+    // Variable Declarations
+    string lv_currentConscription;
+
+    // Automatic Variable Declarations
+    int auto70F7337B_ai;
+    int auto70F7337B_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    auto70F7337B_ai = 1;
+    auto70F7337B_ae = UserDataInstanceCount("Conscription")+1;
+    while (auto70F7337B_ai < auto70F7337B_ae) {
+        lv_currentConscription = UserDataInstance("Conscription", auto70F7337B_ai);
+        auto70F7337B_ai = auto70F7337B_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_currentConscription)) {
+            continue;
+        }
+        libConB_gf_ReadConscriptionFromBank(lp_bank, lp_section, lv_currentConscription);
+    }
+}
+
+void libConB_gf_WriteConscriptionToBank (bank lp_bank, string lp_section, string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_conscriptionBankData.lv_bank = lp_bank;
+    libConB_gv_conscriptionBankData.lv_section = lp_section;
+    libConB_gv_conscriptionBankData.lv_key = (lp_conscription);
+    libConB_gv_conscriptionBankData.lv_state = UserDataGetInt("Conscription", lp_conscription, "State", 1);
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Write Conscription To Bank Trigger", 1), true, true);
+}
+
+void libConB_gf_ReadConscriptionFromBank (bank lp_bank, string lp_section, string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_conscriptionBankData.lv_bank = lp_bank;
+    libConB_gv_conscriptionBankData.lv_section = lp_section;
+    libConB_gv_conscriptionBankData.lv_key = (lp_conscription);
+    libConB_gv_conscriptionBankData.lv_state = 0;
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Load Conscription From Bank Trigger", 1), true, true);
+    libConB_gf_SetConscriptionState(lp_conscription, libConB_gf_ParseConscriptionUnitState(libConB_gv_conscriptionBankData.lv_state));
+}
+
+string libConB_gf_GetBankSectionName (string lp_map) {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_conscriptionBankMap = lp_map;
+    libConB_gv_conscriptionBankSectionName = "";
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Get Bank Section Name Trigger", 1), true, true);
+    return libConB_gv_conscriptionBankSectionName;
+}
+
+bank libConB_gf_GetCampaignBank () {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Get Campaign Bank Trigger", 1), true, true);
+    return libConB_gv_conscriptionCampaignBank;
+}
+
+string libConB_gf_GetConscriptionBankSection () {
+    // Automatic Variable Declarations
+    // Implementation
+    return UserDataGetString("ConscriptionModule", "Base", "Conscription Bank Section", 1);
+}
+
+string libConB_gf_ConscriptionCheatHandler (string lp_inputWords) {
+    // Variable Declarations
+    string lv_actionTypeName;
+    string lv_unitTypeName;
+    int lv_unitTypeNameIndex;
+    string lv_stateName;
+    string lv_sectionName;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_actionTypeName = "";
+    lv_unitTypeName = "";
+    lv_unitTypeNameIndex = (libConB_ge_ConscriptionCheatToken_UnitTokenStartIndex);
+    lv_stateName = "";
+    lv_sectionName = "";
+
+    // Implementation
+    lv_actionTypeName = StringWord(lp_inputWords, (libConB_ge_ConscriptionCheatToken_ActionTokenIndex));
+    if ((StringEqual(lv_actionTypeName, "", c_stringNoCase) == true)) {
+        return ("Action type name required.<n/>Format: conscription <action type name> <unit type name><n/>Valid actions: " + libConB_gf_ValidConscriptionActionList());
+    }
+
+    if (((StringEqual(lv_actionTypeName, libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_SaveAll), c_stringNoCase) == true) || (StringEqual(lv_actionTypeName, libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_LoadAll), c_stringNoCase) == true))) {
+        if ((libConB_gf_IsStoryMap(libConB_gf_GetCurrentMap()) == true)) {
+            lv_sectionName = libConB_gf_GetBankSectionName(null);
+        }
+        else {
+            lv_sectionName = libConB_gf_GetBankSectionName(libConB_gf_GetCurrentMap());
+        }
+        return libConB_gf_ExecuteConscriptionActionString(lv_actionTypeName, lv_unitTypeName, lv_stateName, lv_sectionName);
+    }
+
+    if ((StringEqual(lv_actionTypeName, libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_Override), c_stringNoCase) == true)) {
+        lv_stateName = StringWord(lp_inputWords, lv_unitTypeNameIndex);
+        if ((StringEqual(lv_stateName, "", c_stringNoCase) == true)) {
+            return "Conscription State name required.<n/>Format: conscription override <state name> <unit type name><n/>";
+        }
+
+        lv_unitTypeNameIndex = (lv_unitTypeNameIndex + 1);
+    }
+
+    lv_unitTypeName = libConB_gf_CamelCaseFromSpaceSeparated(lp_inputWords, true, lv_unitTypeNameIndex, 0);
+    if ((StringEqual(lv_unitTypeName, "", c_stringNoCase) == true)) {
+        return ("Unit type name required.<n/>Format: conscription <action type name> <unit type name><n/>Valid actions: " + libConB_gf_ValidConscriptionActionList());
+    }
+
+    return libConB_gf_ExecuteConscriptionActionString(lv_actionTypeName, lv_unitTypeName, lv_stateName, lv_sectionName);
+}
+
+string libConB_gf_ValidConscriptionActionList () {
+    // Variable Declarations
+    int lv_actionIndex;
+    string lv_actionString;
+    string lv_outputString;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_actionIndex = libConB_ge_ConscriptionActionType_Unlock;
+    lv_actionString = libConB_ge_ConscriptionActionType_Ident(lv_actionIndex);
+    lv_outputString = "";
+
+    // Implementation
+    if ((lv_actionString == null)) {
+        return "";
+    }
+
+    while ((lv_actionString != null)) {
+        lv_actionIndex = lv_actionIndex + 1;
+        lv_outputString = lv_outputString + ", " + lv_actionString;
+        lv_actionString = libConB_ge_ConscriptionActionType_Ident(lv_actionIndex);
+    }
+    return StringSub(lv_outputString, 3, StringLength(lv_outputString));
+}
+
+int libConB_gf_ParseConscriptionUnitState (int lp_stateValue) {
+    // Automatic Variable Declarations
+    int auto840DF310_val;
+
+    // Implementation
+    auto840DF310_val = lp_stateValue;
+    if (auto840DF310_val == libConB_ge_ConscriptionUnitState_Locked) {
+        return libConB_ge_ConscriptionUnitState_Locked;
+    }
+    else if (auto840DF310_val == libConB_ge_ConscriptionUnitState_Available) {
+        return libConB_ge_ConscriptionUnitState_Available;
+    }
+    else if (auto840DF310_val == libConB_ge_ConscriptionUnitState_Purchased) {
+        return libConB_ge_ConscriptionUnitState_Purchased;
+    }
+    else {
+        return libConB_ge_ConscriptionUnitState_None;
+    }
+}
+
+int libConB_gf_ParseConscriptionUnitStateString (string lp_stateName) {
+    // Automatic Variable Declarations
+    string autoDFDB9D04_val;
+
+    // Implementation
+    autoDFDB9D04_val = StringCase(lp_stateName, false);
+    if (autoDFDB9D04_val == StringCase(libConB_ge_ConscriptionUnitState_Ident(libConB_ge_ConscriptionUnitState_Locked), false)) {
+        return libConB_ge_ConscriptionUnitState_Locked;
+    }
+    else if (autoDFDB9D04_val == StringCase(libConB_ge_ConscriptionUnitState_Ident(libConB_ge_ConscriptionUnitState_Available), false)) {
+        return libConB_ge_ConscriptionUnitState_Available;
+    }
+    else if (autoDFDB9D04_val == StringCase(libConB_ge_ConscriptionUnitState_Ident(libConB_ge_ConscriptionUnitState_Purchased), false)) {
+        return libConB_ge_ConscriptionUnitState_Purchased;
+    }
+    else {
+        return libConB_ge_ConscriptionUnitState_None;
+    }
+}
+
+bool libConB_gf_ConscriptionIsEnabled (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (UserDataGetInt("Conscription", lp_conscription, "UnlockWithConscription", 1) > 0);
+}
+
+int libConB_gf_GetConscriptionState (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return libConB_gf_ParseConscriptionUnitState(UserDataGetInt("Conscription", lp_conscription, "State", 1));
+}
+
+void libConB_gf_SetConscriptionState (string lp_conscription, int lp_state) {
+    // Automatic Variable Declarations
+    // Implementation
+    UserDataSetInt("Conscription", lp_conscription, "State", 1, (lp_state));
+}
+
+bool libConB_gf_ConscriptionIsEnabledForUnit (string lp_unitType) {
+    // Variable Declarations
+    string lv_conscription;
+    bool lv_enabled;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
+
+    // Implementation
+    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+        lv_enabled = libConB_gf_ConscriptionIsEnabled(lv_conscription);
+    }
+    return lv_enabled;
+}
+
+int libConB_gf_GetConscriptionUnitState (string lp_unitType) {
+    // Variable Declarations
+    string lv_conscription;
+    int lv_state;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
+    lv_state = libConB_ge_ConscriptionUnitState_None;
+
+    // Implementation
+    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+        lv_state = libConB_gf_GetConscriptionState(lv_conscription);
+    }
+    return lv_state;
+}
+
+void libConB_gf_SetConscriptionUnitState (string lp_unitType, int lp_state) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
+
+    // Implementation
+    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+        libConB_gf_SetConscriptionState(lv_conscription, lp_state);
+    }
+}
+
+void libConB_gf_ApplyAllConscriptionsToTechTree () {
+    // Variable Declarations
+    string lv_currentConscription;
+
+    // Automatic Variable Declarations
+    int auto29D67E6F_ai;
+    int auto29D67E6F_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    auto29D67E6F_ai = 1;
+    auto29D67E6F_ae = UserDataInstanceCount("Conscription")+1;
+    while (auto29D67E6F_ai < auto29D67E6F_ae) {
+        lv_currentConscription = UserDataInstance("Conscription", auto29D67E6F_ai);
+        auto29D67E6F_ai = auto29D67E6F_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_currentConscription)) {
+            continue;
+        }
+        libConB_gf_ApplyConscriptionToTechTree(lv_currentConscription);
+    }
+}
+
+void libConB_gf_ApplyConscriptionToTechTree (string lp_conscription) {
+    // Variable Declarations
+    string lv_armyCategory;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_armyCategory = (UserDataGetString("Conscription", lp_conscription, "TechUnitId", 1));
+
+    // Implementation
+    if (((lv_armyCategory == null) || (lv_armyCategory == ""))) {
+        TriggerDebugOutput(1, StringExternal("Param/Value/lib_ConB_A56F6C05"), true);
+    }
+    else {
+        libConB_gf_UpdateTechTreeForArmyCategory(lv_armyCategory, (libConB_gf_ParseConscriptionUnitState(UserDataGetInt("Conscription", lp_conscription, "State", 1)) == libConB_ge_ConscriptionUnitState_Purchased));
+    }
+}
+
+void libConB_gf_UpdateTechTreeForArmyCategory (string lp_armyCategory, bool lp_enable) {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_techTreeArmyCategory = lp_armyCategory;
+    libConB_gv_techTreeEnable = lp_enable;
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Update Tech Tree For Army Category Trigger", 1), true, true);
+}
+
+void libConB_gf_ConscriptionTravelPanelMissionStart () {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gf_SaveAllConscriptionsToCampaignMapBank(null);
+}
+
+void libConB_gf_ConscriptionMissionStart () {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libConB_gf_IsStoryMap(libConB_gf_GetCurrentMap()) == false)) {
+        libConB_gf_LoadAllConscriptionsFromBank(libConB_gf_GetCampaignBank(), libConB_gf_GetBankSectionName(null));
+    }
+    else {
+        libConB_gf_LoadAllConscriptionsFromBank(libConB_gf_GetCampaignBank(), libConB_gf_GetBankSectionName(libConB_gf_GetLastSuccessfulMission()));
+    }
+    libConB_gf_ApplyAllConscriptionsToTechTree();
+    if ((libConB_gf_IsStoryMap(libConB_gf_GetCurrentMap()) == false)) {
+        libConB_gf_UnlockConscriptionsOnMapStart(libConB_gf_GetCurrentMap(), (libConB_gf_GetNumberOfMissionsCompleted() + 1));
+    }
+
+}
+
+void libConB_gf_ConscriptionMissionVictory () {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libConB_gf_IsStoryMap(libConB_gf_GetCurrentMap()) == false)) {
+        libConB_gf_UnlockConscriptionsOnMapVictory(libConB_gf_GetCurrentMap(), libConB_gf_GetNumberOfMissionsCompleted());
+        libConB_gf_SaveAllConscriptionsToCampaignMapBank(libConB_gf_GetCurrentMap());
+    }
+
+    libConB_gf_SaveAllConscriptionsToCampaignMapBank(null);
+}
+
+void libConB_gf_UnlockConscriptionsByMap (string lp_map) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    int autoE6E14E1C_ai;
+    int autoE6E14E1C_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    autoE6E14E1C_ai = 1;
+    autoE6E14E1C_ae = UserDataInstanceCount("Conscription")+1;
+    while (autoE6E14E1C_ai < autoE6E14E1C_ae) {
+        lv_conscription = UserDataInstance("Conscription", autoE6E14E1C_ai);
+        autoE6E14E1C_ai = autoE6E14E1C_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_conscription)) {
+            continue;
+        }
+        libConB_gf_UnlockConscriptionByMap(lv_conscription, lp_map);
+    }
+}
+
+void libConB_gf_UnlockConscriptionByMap (string lp_conscription, string lp_map) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_map != null) && (libConB_gf_ConscriptionUnlocksByMap(lp_conscription) == true) && (lp_map == UserDataGetGameLink("Conscription", lp_conscription, "UnlockMap", 1))) {
+        libConB_gf_LogDebugIfNotEmpty(libConB_gf_UnlockConscription(lp_conscription));
+    }
+
+}
+
+bool libConB_gf_ConscriptionUnlocksByMap (string lp_conscription) {
+    // Variable Declarations
+    string lv_unlockMap;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unlockMap = UserDataGetGameLink("Conscription", lp_conscription, "UnlockMap", 1);
+
+    // Implementation
+    return !(libConB_gf_NullOrEmptyString(lv_unlockMap));
+}
+
+void libConB_gf_UnlockConscriptionsByMissionNumber (int lp_missionCount) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    int auto5A93EB95_ai;
+    int auto5A93EB95_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    auto5A93EB95_ai = 1;
+    auto5A93EB95_ae = UserDataInstanceCount("Conscription")+1;
+    while (auto5A93EB95_ai < auto5A93EB95_ae) {
+        lv_conscription = UserDataInstance("Conscription", auto5A93EB95_ai);
+        auto5A93EB95_ai = auto5A93EB95_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_conscription)) {
+            continue;
+        }
+        libConB_gf_UnlockConscriptionByMissionNumber(lv_conscription, lp_missionCount);
+    }
+}
+
+void libConB_gf_UnlockConscriptionByMissionNumber (string lp_conscription, int lp_missionCount) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libConB_gf_ConscriptionUnlocksByMissionNumber(lp_conscription) == true) && (lp_missionCount == UserDataGetInt("Conscription", lp_conscription, "UnlockMissionNumber", 1))) {
+        libConB_gf_LogDebugIfNotEmpty(libConB_gf_UnlockConscription(lp_conscription));
+    }
+
+}
+
+bool libConB_gf_ConscriptionUnlocksByMissionNumber (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (UserDataGetInt("Conscription", lp_conscription, "UnlockMissionNumber", 1) > 0);
+}
+
+bool libConB_gf_ConscriptionUnlockConditionTemplate (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (lp_conscription != null);
+}
+
+void libConB_gf_UnlockConscriptionsByTrigger () {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    int auto6CC0563B_ai;
+    int auto6CC0563B_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    auto6CC0563B_ai = 1;
+    auto6CC0563B_ae = UserDataInstanceCount("Conscription")+1;
+    while (auto6CC0563B_ai < auto6CC0563B_ae) {
+        lv_conscription = UserDataInstance("Conscription", auto6CC0563B_ai);
+        auto6CC0563B_ai = auto6CC0563B_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_conscription)) {
+            continue;
+        }
+        libConB_gf_UnlockConscriptionByTrigger(lv_conscription);
+    }
+}
+
+void libConB_gf_UnlockConscriptionByTrigger (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libConB_gf_ConscriptionUnlocksByTrigger(lp_conscription) == true)) {
+        libConB_gv_currentTriggerConscription = lp_conscription;
+        libConB_gv_unlockCurrentTriggerConscription = false;
+        libNtve_gf_TriggerExecuteByName(UserDataGetString("Conscription", lp_conscription, "UnlockTriggerName", 1), true, true);
+        if ((libConB_gv_unlockCurrentTriggerConscription == true)) {
+            libConB_gf_LogDebugIfNotEmpty(libConB_gf_UnlockConscription(lp_conscription));
+        }
+
+    }
+
+}
+
+bool libConB_gf_ConscriptionUnlocksByTrigger (string lp_conscription) {
+    // Variable Declarations
+    string lv_unlockTriggerName;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unlockTriggerName = UserDataGetString("Conscription", lp_conscription, "UnlockTriggerName", 1);
+
+    // Implementation
+    return !(libConB_gf_NullOrEmptyString(lv_unlockTriggerName));
+}
+
+void libConB_gf_UnlockConscriptionsOnMapStart (string lp_map, int lp_missionNumber) {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gf_UnlockConscriptionsInMission(lp_map, lp_missionNumber, true);
+}
+
+void libConB_gf_UnlockConscriptionsOnMapVictory (string lp_map, int lp_missionNumber) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libConB_gf_UnlockConscriptionsInMission(lp_map, lp_missionNumber, false);
+}
+
+void libConB_gf_UnlockConscriptionsInMission (string lp_map, int lp_missionNumber, bool lp_isMissionStart) {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    int auto4E1CD1F8_ai;
+    int auto4E1CD1F8_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    auto4E1CD1F8_ai = 1;
+    auto4E1CD1F8_ae = UserDataInstanceCount("Conscription")+1;
+    while (auto4E1CD1F8_ai < auto4E1CD1F8_ae) {
+        lv_conscription = UserDataInstance("Conscription", auto4E1CD1F8_ai);
+        auto4E1CD1F8_ai = auto4E1CD1F8_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_conscription)) {
+            continue;
+        }
+        if (((libConB_gf_ConscriptionUnlocksAutomatically(lv_conscription) == false) || (libConB_gf_ConscriptionUnlocksInCutscene(lv_conscription) == lp_isMissionStart))) {
+            continue;
+        }
+
+        libConB_gf_UnlockConscriptionByMap(lv_conscription, lp_map);
+        libConB_gf_UnlockConscriptionByMissionNumber(lv_conscription, lp_missionNumber);
+        libConB_gf_UnlockConscriptionByTrigger(lv_conscription);
+    }
+}
+
+bool libConB_gf_ConscriptionUnlocksInCutscene (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (UserDataGetInt("Conscription", lp_conscription, "UnlockInCutscene", 1) > 0);
+}
+
+bool libConB_gf_ConscriptionUnlocksAutomatically (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (libConB_gf_ConscriptionUnlocksByMap(lp_conscription) || (libConB_gf_ConscriptionUnlocksByMissionNumber(lp_conscription) || libConB_gf_ConscriptionUnlocksByTrigger(lp_conscription)));
+}
+
+string libConB_gf_GetCurrentMap () {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_conscriptionMap = null;
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Get Current Map Trigger", 1), true, true);
+    return libConB_gv_conscriptionMap;
+}
+
+string libConB_gf_GetLastSuccessfulMission () {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_conscriptionMap = null;
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Get Last Successful Mission Trigger", 1), true, true);
+    return libConB_gv_conscriptionMap;
+}
+
+bool libConB_gf_IsStoryMap (string lp_map) {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_conscriptionMap = lp_map;
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Is Story Map Trigger", 1), true, true);
+    return libConB_gv_isStoryMap;
+}
+
+int libConB_gf_GetNumberOfMissionsCompleted () {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_numberOfMissionsCompleted = 0;
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Get Number Of Missions Completed Trigger", 1), true, true);
+    return libConB_gv_numberOfMissionsCompleted;
+}
+
+bool libConB_gf_NullOrEmptyString (string lp_inputString) {
+    // Automatic Variable Declarations
+    // Implementation
+    return lp_inputString == null || StringEqual(lp_inputString, "", c_stringCase);
+}
+
+string libConB_gf_ParseUnitTypeFromString (string lp_unitTypeName) {
+    // Variable Declarations
+    string lv_unitType;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((StringEqual(lp_unitTypeName, "", c_stringNoCase) == true)) {
+        return null;
+    }
+
+    lv_unitType = UnitTypeFromString(lp_unitTypeName);
+    if (((lv_unitType == null) || (lv_unitType == ""))) {
+        return null;
+    }
+
+    return lv_unitType;
+}
+
+string libConB_gf_CamelCaseFromSpaceSeparated (string lp_inputWords, bool lp_capitalize, int lp_startTokenIndex, int lp_maxTokens) {
+    // Variable Declarations
+    string lv_camelCasedWords;
+    string lv_currentToken;
+    int lv_currentTokenIndex;
+    int lv_numberOfTokens;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_camelCasedWords = "";
+    lv_currentToken = "";
+
+    // Implementation
+    lv_currentTokenIndex = lp_startTokenIndex;
+    lv_currentToken = StringWord(lp_inputWords, lv_currentTokenIndex);
+    while ((lv_currentToken != null) && ((lp_maxTokens <= 0) || (lv_numberOfTokens < lp_maxTokens))) {
+        lv_numberOfTokens = (lv_numberOfTokens + 1);
+        lv_currentToken = StringCase(lv_currentToken, false);
+        lv_currentToken = (StringCase(StringSub(lv_currentToken, 1, 1), true) + StringSub(lv_currentToken, 2, StringLength(lv_currentToken)));
+        lv_camelCasedWords = (lv_camelCasedWords + lv_currentToken);
+        lv_currentTokenIndex = (lv_currentTokenIndex + 1);
+        lv_currentToken = StringWord(EventChatMessage(false), lv_currentTokenIndex);
+    }
+    if ((lp_capitalize == false)) {
+        lv_camelCasedWords = (StringCase(StringSub(lv_camelCasedWords, 1, 1), false) + StringSub(lv_camelCasedWords, 2, StringLength(lv_camelCasedWords)));
+    }
+
+    return lv_camelCasedWords;
+}
+
+void libConB_gf_LogDebugIfNotEmpty (string lp_string) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libConB_gf_NullOrEmptyString(lp_string) == false)) {
+        TriggerDebugOutput(1, StringToText(lp_string), false);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Conscription Cheat Listener
+//--------------------------------------------------------------------------------------------------
+bool libConB_gt_ConscriptionCheatListener_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_errorMessage;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_errorMessage = "";
+
+    // Conditions
+    if (testConds) {
+        if (!((StringEqual(StringWord(EventChatMessage(false), (libConB_ge_ConscriptionCheatToken_ConscriptionTokenIndex)), "conscription", c_stringNoCase) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_errorMessage = libConB_gf_ConscriptionCheatHandler(EventChatMessage(false));
+    if ((StringEqual(lv_errorMessage, "", c_stringNoCase) != true)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringToText(lv_errorMessage));
+        return true;
+    }
+
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringToText("cheat applied successfully"));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libConB_gt_ConscriptionCheatListener_Init () {
+    libConB_gt_ConscriptionCheatListener = TriggerCreate("libConB_gt_ConscriptionCheatListener_Func");
+    TriggerAddEventChatMessage(libConB_gt_ConscriptionCheatListener, c_playerAny, "", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Conscription Unlock Trigger Template
+//--------------------------------------------------------------------------------------------------
+bool libConB_gt_ConscriptionUnlockTriggerTemplate_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libConB_gv_unlockCurrentTriggerConscription = libConB_gf_ConscriptionUnlockConditionTemplate(libConB_gv_currentTriggerConscription);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libConB_gt_ConscriptionUnlockTriggerTemplate_Init () {
+    libConB_gt_ConscriptionUnlockTriggerTemplate = TriggerCreate("libConB_gt_ConscriptionUnlockTriggerTemplate_Func");
+}
+
+void libConB_InitTriggers () {
+    libConB_gt_ConscriptionCheatListener_Init();
+    libConB_gt_ConscriptionUnlockTriggerTemplate_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libConB_InitLib_completed = false;
+
+void libConB_InitLib () {
+    if (libConB_InitLib_completed) {
+        return;
+    }
+
+    libConB_InitLib_completed = true;
+
+    libConB_InitLibraries();
+    libConB_InitVariables();
+    libConB_InitTriggers();
+}
+
