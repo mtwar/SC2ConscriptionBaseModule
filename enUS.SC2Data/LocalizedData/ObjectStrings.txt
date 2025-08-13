@@ -1,0 +1,3 @@
+﻿User/Name/Conscription=Conscription
+User/Name/ConscriptionModule=Conscription Module
+User/Name/TechUnit=Campaign Tech Unit
