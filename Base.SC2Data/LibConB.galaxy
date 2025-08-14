@@ -191,7 +191,7 @@ string libConB_gf_OverrideConscriptionState (string lp_unitType, int lp_state) {
     lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
 
     // Implementation
-    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+    if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
         libConB_gf_SetConscriptionState(lv_conscription, lp_state);
         libConB_gf_ApplyConscriptionToTechTree(lv_conscription);
         return "";
@@ -250,7 +250,7 @@ string libConB_gf_UnlockConscriptionUnit (string lp_unitType) {
     lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
 
     // Implementation
-    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+    if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
         return libConB_gf_UnlockConscription(lv_conscription);
     }
     return ("conscription not configured for unit type " + lp_unitType);
@@ -265,7 +265,7 @@ string libConB_gf_LockConscriptionUnit (string lp_unitType) {
     lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
 
     // Implementation
-    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+    if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
         return libConB_gf_LockConscription(lv_conscription);
     }
     return ("conscription not configured for unit type " + lp_unitType);
@@ -280,7 +280,7 @@ string libConB_gf_BuyConscriptionUnit (string lp_unitType) {
     lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
 
     // Implementation
-    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+    if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
         return libConB_gf_BuyConscription(lv_conscription);
     }
     return ("conscription not configured for unit type " + lp_unitType);
@@ -295,7 +295,7 @@ string libConB_gf_RefundConscriptionUnit (string lp_unitType) {
     lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
 
     // Implementation
-    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+    if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
         return libConB_gf_RefundConscription(lv_conscription);
     }
     return ("conscription not configured for unit type " + lp_unitType);
@@ -619,7 +619,7 @@ bool libConB_gf_ConscriptionIsEnabledForUnit (string lp_unitType) {
     lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
 
     // Implementation
-    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+    if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
         lv_enabled = libConB_gf_ConscriptionIsEnabled(lv_conscription);
     }
     return lv_enabled;
@@ -636,7 +636,7 @@ int libConB_gf_GetConscriptionUnitState (string lp_unitType) {
     lv_state = libConB_ge_ConscriptionUnitState_None;
 
     // Implementation
-    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+    if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
         lv_state = libConB_gf_GetConscriptionState(lv_conscription);
     }
     return lv_state;
@@ -651,7 +651,7 @@ void libConB_gf_SetConscriptionUnitState (string lp_unitType, int lp_state) {
     lv_conscription = libConB_gf_GetConscriptionEntryForUnit(lp_unitType);
 
     // Implementation
-    if (StringEqual(lv_conscription, "", c_stringNoCase) == false) {
+    if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
         libConB_gf_SetConscriptionState(lv_conscription, lp_state);
     }
 }

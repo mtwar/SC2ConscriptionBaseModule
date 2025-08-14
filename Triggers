@@ -4662,7 +4662,7 @@
             <Parameter Type="ParamDef" Library="ConB" Id="E8F55D54"/>
             <SubFunctionType Type="SubFuncType" Library="ConB" Id="1361F2CE"/>
             <ScriptCode>
-                if (StringEqual(#PARAM(conscription), &quot;&quot;, c_stringNoCase) == false) {
+                if (!libConB_gf_NullOrEmptyString(#PARAM(conscription))) {
                     #SUBFUNCS(actions)
                 }
             </ScriptCode>
