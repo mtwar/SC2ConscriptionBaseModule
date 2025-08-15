@@ -37,6 +37,7 @@ string libConB_ge_ConscriptionActionType_Ident (int lp_val) {
     else if (lp_val == libConB_ge_ConscriptionActionType_Load) { return "Load"; }
     else if (lp_val == libConB_ge_ConscriptionActionType_SaveAll) { return "SaveAll"; }
     else if (lp_val == libConB_ge_ConscriptionActionType_LoadAll) { return "LoadAll"; }
+    else if (lp_val == libConB_ge_ConscriptionActionType_ToggleDebug) { return "ToggleDebug"; }
     return null;
 }
 
@@ -85,7 +86,7 @@ int libConB_gf_GetAvailableCredits () {
     // Automatic Variable Declarations
     // Implementation
     libConB_gv_creditsAvailable = 0;
-    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Get Bank Section Name Trigger", 1), true, true);
+    libNtve_gf_TriggerExecuteByName(UserDataGetString("ConscriptionModule", "Base", "Get Available Credits Trigger", 1), true, true);
     return libConB_gv_creditsAvailable;
 }
 
@@ -156,7 +157,7 @@ string libConB_gf_BuyConscription (string lp_conscription) {
     }
 
     if ((libConB_gf_GetAvailableCredits() < UserDataGetInt("Conscription", lp_conscription, "Price", 1))) {
-        return "insufficient credits to buy " + lp_conscription;
+        return "insufficient credits (" + IntToString(libConB_gf_GetAvailableCredits()) + ") to buy " + lp_conscription + "(" + IntToString(UserDataGetInt("Conscription", lp_conscription, "Price", 1)) + ")";
     }
 
     libConB_gf_SetConscriptionState(lp_conscription, libConB_ge_ConscriptionUnitState_Purchased);
@@ -209,6 +210,12 @@ int libConB_gf_ConscriptionPrice (string lp_conscription) {
     // Automatic Variable Declarations
     // Implementation
     return UserDataGetInt("Conscription", lp_conscription, "Price", 1);
+}
+
+void libConB_gf_ToggleDebug () {
+    // Automatic Variable Declarations
+    // Implementation
+    libConB_gv_displayConscriptionDebug = !(libConB_gv_displayConscriptionDebug);
 }
 
 string libConB_gf_GetConscriptionEntryForUnit (string lp_unitType) {
@@ -495,8 +502,13 @@ string libConB_gf_ConscriptionCheatHandler (string lp_inputWords) {
 
     // Implementation
     lv_actionTypeName = StringWord(lp_inputWords, (libConB_ge_ConscriptionCheatToken_ActionTokenIndex));
-    if ((StringEqual(lv_actionTypeName, "", c_stringNoCase) == true)) {
+    if ((libConB_gf_NullOrEmptyString(lv_actionTypeName) == true)) {
         return ("Action type name required.<n/>Format: conscription <action type name> <unit type name><n/>Valid actions: " + libConB_gf_ValidConscriptionActionList());
+    }
+
+    if ((StringEqual(lv_actionTypeName, libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_ToggleDebug), c_stringNoCase) == true)) {
+        libConB_gf_ToggleDebug();
+        return "";
     }
 
     if (((StringEqual(lv_actionTypeName, libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_SaveAll), c_stringNoCase) == true) || (StringEqual(lv_actionTypeName, libConB_ge_ConscriptionActionType_Ident(libConB_ge_ConscriptionActionType_LoadAll), c_stringNoCase) == true))) {
@@ -1025,7 +1037,12 @@ void libConB_gf_LogDebugIfNotEmpty (string lp_string) {
     // Automatic Variable Declarations
     // Implementation
     if ((libConB_gf_NullOrEmptyString(lp_string) == false)) {
-        TriggerDebugOutput(1, StringToText(lp_string), false);
+        if ((libConB_gv_displayConscriptionDebug == true)) {
+            TriggerDebugOutput(1, StringToText(lp_string), true);
+        }
+        else {
+            TriggerDebugOutput(1, StringToText(lp_string), false);
+        }
     }
 
 }

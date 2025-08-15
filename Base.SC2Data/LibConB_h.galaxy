@@ -14,6 +14,7 @@ const int libConB_ge_ConscriptionActionType_Save = 6;
 const int libConB_ge_ConscriptionActionType_Load = 7;
 const int libConB_ge_ConscriptionActionType_SaveAll = 8;
 const int libConB_ge_ConscriptionActionType_LoadAll = 9;
+const int libConB_ge_ConscriptionActionType_ToggleDebug = 10;
 string libConB_ge_ConscriptionActionType_Ident (int lp_val);
 const int libConB_ge_ConscriptionCheatToken_None = 0;
 const int libConB_ge_ConscriptionCheatToken_ConscriptionTokenIndex = 1;
@@ -46,6 +47,7 @@ bool libConB_gv_unlockCurrentTriggerConscription;
 int libConB_gv_numberOfMissionsCompleted;
 string libConB_gv_conscriptionMap;
 bool libConB_gv_isStoryMap;
+bool libConB_gv_displayConscriptionDebug;
 
 // Function Declarations
 int libConB_gf_ParseConscriptionActionTypeString (string lp_actionTypeName);
@@ -57,6 +59,7 @@ string libConB_gf_RefundConscription (string lp_conscription);
 string libConB_gf_OverrideConscriptionState (string lp_unitType, int lp_state);
 bool libConB_gf_ConscriptionPurchased (string lp_conscription);
 int libConB_gf_ConscriptionPrice (string lp_conscription);
+void libConB_gf_ToggleDebug ();
 string libConB_gf_GetConscriptionEntryForUnit (string lp_unitType);
 string libConB_gf_UnlockConscriptionUnit (string lp_unitType);
 string libConB_gf_LockConscriptionUnit (string lp_unitType);
