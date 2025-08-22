@@ -5,6 +5,7 @@
             <Item Type="Category" Library="ConB" Id="3AA33D1C"/>
             <Item Type="Category" Library="ConB" Id="8803FD6A"/>
             <Item Type="Category" Library="ConB" Id="FA2B89D7"/>
+            <Item Type="Category" Library="ConB" Id="956FDC08"/>
             <Item Type="Category" Library="ConB" Id="4675045E"/>
             <Item Type="Category" Library="ConB" Id="E698351E"/>
             <Item Type="Category" Library="ConB" Id="77F70FF9"/>
@@ -4707,6 +4708,1152 @@
             <Value>cheat applied successfully</Value>
             <ValueType Type="string"/>
         </Element>
+        <Element Type="Category" Id="956FDC08">
+            <Item Type="Category" Library="ConB" Id="A34642D1"/>
+            <Item Type="Category" Library="ConB" Id="1DEDE39F"/>
+        </Element>
+        <Element Type="Category" Id="A34642D1">
+            <Item Type="FunctionDef" Library="ConB" Id="28BF5097"/>
+            <Item Type="FunctionDef" Library="ConB" Id="8E705C2E"/>
+            <Item Type="FunctionDef" Library="ConB" Id="7E23E60D"/>
+            <Item Type="FunctionDef" Library="ConB" Id="EBD3E08C"/>
+            <Item Type="FunctionDef" Library="ConB" Id="24B86EBE"/>
+            <Item Type="FunctionDef" Library="ConB" Id="541FF487"/>
+            <Item Type="FunctionDef" Library="ConB" Id="41695BD9"/>
+        </Element>
+        <Element Type="FunctionDef" Id="28BF5097">
+            <FlagCall/>
+            <ReturnType>
+                <Type Value="string"/>
+            </ReturnType>
+            <Parameter Type="ParamDef" Library="ConB" Id="CC9EB22D"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="DA5A4D81"/>
+        </Element>
+        <Element Type="ParamDef" Id="CC9EB22D">
+            <ParameterType>
+                <Type Value="userinstance"/>
+                <TypeElement Type="ParamDef" Library="WoLC" Id="0F2889FA"/>
+                <UserType Value="Conscription"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="DA5A4D81">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000097"/>
+            <Parameter Type="Param" Library="ConB" Id="B8A95EF1"/>
+        </Element>
+        <Element Type="Param" Id="B8A95EF1">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="7092E016"/>
+        </Element>
+        <Element Type="FunctionCall" Id="7092E016">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="7D1F0181"/>
+            <Parameter Type="Param" Library="ConB" Id="7461464B"/>
+        </Element>
+        <Element Type="Param" Id="7461464B">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="8D23E367"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="CC9EB22D"/>
+        </Element>
+        <Element Type="FunctionDef" Id="8E705C2E">
+            <FlagCall/>
+            <ReturnType>
+                <Type Value="preset"/>
+                <TypeElement Type="Preset" Library="ConB" Id="50816E1F"/>
+            </ReturnType>
+            <Parameter Type="ParamDef" Library="ConB" Id="22D99DDF"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="01477F01"/>
+        </Element>
+        <Element Type="ParamDef" Id="22D99DDF">
+            <ParameterType>
+                <Type Value="userinstance"/>
+                <TypeElement Type="ParamDef" Library="WoLC" Id="0F2889FA"/>
+                <UserType Value="Conscription"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="01477F01">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000097"/>
+            <Parameter Type="Param" Library="ConB" Id="D4AEC7DC"/>
+        </Element>
+        <Element Type="Param" Id="D4AEC7DC">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="51D912A9"/>
+        </Element>
+        <Element Type="FunctionCall" Id="51D912A9">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="4A9C11EF"/>
+            <Parameter Type="Param" Library="ConB" Id="B7CE360E"/>
+        </Element>
+        <Element Type="Param" Id="B7CE360E">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="8819B572"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="F5B813EF"/>
+        </Element>
+        <Element Type="FunctionCall" Id="F5B813EF">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="1B79DE77"/>
+            <Parameter Type="Param" Library="ConB" Id="B25CF198"/>
+            <Parameter Type="Param" Library="ConB" Id="B353676D"/>
+            <Parameter Type="Param" Library="ConB" Id="28146CBB"/>
+            <Parameter Type="Param" Library="ConB" Id="4BD6F6E1"/>
+        </Element>
+        <Element Type="Param" Id="B25CF198">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ECEA677C"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="B353676D">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="A65030BE"/>
+            <Value>Conscription</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="User"/>
+        </Element>
+        <Element Type="Param" Id="28146CBB">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="F33ACFAA"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="22D99DDF"/>
+        </Element>
+        <Element Type="Param" Id="4BD6F6E1">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="344B79F1"/>
+            <Value>State</Value>
+            <ValueType Type="userfield"/>
+            <ValueContext Value="Conscription"/>
+        </Element>
+        <Element Type="FunctionDef" Id="7E23E60D">
+            <FlagCall/>
+            <ReturnType>
+                <Type Value="bool"/>
+            </ReturnType>
+            <Parameter Type="ParamDef" Library="ConB" Id="7C79D2F2"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="A94749E1"/>
+        </Element>
+        <Element Type="ParamDef" Id="7C79D2F2">
+            <ParameterType>
+                <Type Value="userinstance"/>
+                <TypeElement Type="ParamDef" Library="WoLC" Id="0F2889FA"/>
+                <UserType Value="Conscription"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="A94749E1">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000097"/>
+            <Parameter Type="Param" Library="ConB" Id="1811661E"/>
+        </Element>
+        <Element Type="Param" Id="1811661E">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="93E84131"/>
+        </Element>
+        <Element Type="FunctionCall" Id="93E84131">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
+            <Parameter Type="Param" Library="ConB" Id="DF7468A6"/>
+            <Parameter Type="Param" Library="ConB" Id="90732EBF"/>
+            <Parameter Type="Param" Library="ConB" Id="771BB851"/>
+        </Element>
+        <Element Type="Param" Id="DF7468A6">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="C260DAE4"/>
+        </Element>
+        <Element Type="FunctionCall" Id="C260DAE4">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="1B79DE77"/>
+            <Parameter Type="Param" Library="ConB" Id="3CDB5B95"/>
+            <Parameter Type="Param" Library="ConB" Id="ABE3D5A3"/>
+            <Parameter Type="Param" Library="ConB" Id="41312F10"/>
+            <Parameter Type="Param" Library="ConB" Id="DC586D50"/>
+        </Element>
+        <Element Type="Param" Id="3CDB5B95">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ECEA677C"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="ABE3D5A3">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="A65030BE"/>
+            <Value>Conscription</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="User"/>
+        </Element>
+        <Element Type="Param" Id="41312F10">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="344B79F1"/>
+            <Value>UnlockWithConscription</Value>
+            <ValueType Type="userfield"/>
+            <ValueContext Value="Conscription"/>
+        </Element>
+        <Element Type="Param" Id="DC586D50">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="F33ACFAA"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="7C79D2F2"/>
+        </Element>
+        <Element Type="Param" Id="90732EBF">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="40567BEE"/>
+        </Element>
+        <Element Type="Param" Id="771BB851">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionDef" Id="EBD3E08C">
+            <FlagCall/>
+            <ReturnType>
+                <Type Value="int"/>
+            </ReturnType>
+            <Parameter Type="ParamDef" Library="ConB" Id="AAB1BDD7"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="1050677E"/>
+        </Element>
+        <Element Type="ParamDef" Id="AAB1BDD7">
+            <ParameterType>
+                <Type Value="userinstance"/>
+                <TypeElement Type="ParamDef" Library="WoLC" Id="0F2889FA"/>
+                <UserType Value="Conscription"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="1050677E">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000097"/>
+            <Parameter Type="Param" Library="ConB" Id="5BA242DD"/>
+        </Element>
+        <Element Type="Param" Id="5BA242DD">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="F6E5DA38"/>
+        </Element>
+        <Element Type="FunctionCall" Id="F6E5DA38">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="1B79DE77"/>
+            <Parameter Type="Param" Library="ConB" Id="5238811C"/>
+            <Parameter Type="Param" Library="ConB" Id="A61EC4CB"/>
+            <Parameter Type="Param" Library="ConB" Id="FFEE3F03"/>
+            <Parameter Type="Param" Library="ConB" Id="8EAAD9E3"/>
+        </Element>
+        <Element Type="Param" Id="5238811C">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ECEA677C"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="A61EC4CB">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="A65030BE"/>
+            <Value>Conscription</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="User"/>
+        </Element>
+        <Element Type="Param" Id="FFEE3F03">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="344B79F1"/>
+            <Value>Price</Value>
+            <ValueType Type="userfield"/>
+            <ValueContext Value="Conscription"/>
+        </Element>
+        <Element Type="Param" Id="8EAAD9E3">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="F33ACFAA"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="AAB1BDD7"/>
+        </Element>
+        <Element Type="FunctionDef" Id="24B86EBE">
+            <FlagCall/>
+            <ReturnType>
+                <Type Value="int"/>
+            </ReturnType>
+            <Parameter Type="ParamDef" Library="ConB" Id="11A9249D"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="E07039EE"/>
+        </Element>
+        <Element Type="ParamDef" Id="11A9249D">
+            <ParameterType>
+                <Type Value="userinstance"/>
+                <TypeElement Type="ParamDef" Library="WoLC" Id="0F2889FA"/>
+                <UserType Value="Conscription"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="E07039EE">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000097"/>
+            <Parameter Type="Param" Library="ConB" Id="94E713EE"/>
+        </Element>
+        <Element Type="Param" Id="94E713EE">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="5950688B"/>
+        </Element>
+        <Element Type="FunctionCall" Id="5950688B">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="1B79DE77"/>
+            <Parameter Type="Param" Library="ConB" Id="74E4BBC5"/>
+            <Parameter Type="Param" Library="ConB" Id="5806C6BF"/>
+            <Parameter Type="Param" Library="ConB" Id="E744D429"/>
+            <Parameter Type="Param" Library="ConB" Id="81FA030B"/>
+        </Element>
+        <Element Type="Param" Id="74E4BBC5">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ECEA677C"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="5806C6BF">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="A65030BE"/>
+            <Value>Conscription</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="User"/>
+        </Element>
+        <Element Type="Param" Id="E744D429">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="344B79F1"/>
+            <Value>UnlockMissionNumber</Value>
+            <ValueType Type="userfield"/>
+            <ValueContext Value="Conscription"/>
+        </Element>
+        <Element Type="Param" Id="81FA030B">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="F33ACFAA"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="11A9249D"/>
+        </Element>
+        <Element Type="FunctionDef" Id="541FF487">
+            <FlagCall/>
+            <ReturnType>
+                <Type Value="gamelink"/>
+                <GameType Value="Map"/>
+            </ReturnType>
+            <Parameter Type="ParamDef" Library="ConB" Id="AC8F049F"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="1DC32F91"/>
+        </Element>
+        <Element Type="ParamDef" Id="AC8F049F">
+            <ParameterType>
+                <Type Value="userinstance"/>
+                <TypeElement Type="ParamDef" Library="WoLC" Id="0F2889FA"/>
+                <UserType Value="Conscription"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="1DC32F91">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000097"/>
+            <Parameter Type="Param" Library="ConB" Id="D2933317"/>
+        </Element>
+        <Element Type="Param" Id="D2933317">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="C266CB6A"/>
+        </Element>
+        <Element Type="FunctionCall" Id="C266CB6A">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="D8DCE241"/>
+            <Parameter Type="Param" Library="ConB" Id="4183DE1D"/>
+            <Parameter Type="Param" Library="ConB" Id="9F039B86"/>
+            <Parameter Type="Param" Library="ConB" Id="E5423E85"/>
+            <Parameter Type="Param" Library="ConB" Id="6F543170"/>
+        </Element>
+        <Element Type="Param" Id="4183DE1D">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="68AA6D6F"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="9F039B86">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="CDE53498"/>
+            <Value>Conscription</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="User"/>
+        </Element>
+        <Element Type="Param" Id="E5423E85">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="F91B226F"/>
+            <Value>UnlockMap</Value>
+            <ValueType Type="userfield"/>
+            <ValueContext Value="Conscription"/>
+        </Element>
+        <Element Type="Param" Id="6F543170">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="94E0250F"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="AC8F049F"/>
+        </Element>
+        <Element Type="FunctionDef" Id="41695BD9">
+            <FlagCall/>
+            <ReturnType>
+                <Type Value="string"/>
+            </ReturnType>
+            <Parameter Type="ParamDef" Library="ConB" Id="7A32669F"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="8D026610"/>
+        </Element>
+        <Element Type="ParamDef" Id="7A32669F">
+            <ParameterType>
+                <Type Value="userinstance"/>
+                <TypeElement Type="ParamDef" Library="WoLC" Id="0F2889FA"/>
+                <UserType Value="Conscription"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="8D026610">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000097"/>
+            <Parameter Type="Param" Library="ConB" Id="B976105E"/>
+        </Element>
+        <Element Type="Param" Id="B976105E">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="53B19F2B"/>
+        </Element>
+        <Element Type="FunctionCall" Id="53B19F2B">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="0F7F44F5"/>
+            <Parameter Type="Param" Library="ConB" Id="BDA42C6E"/>
+            <Parameter Type="Param" Library="ConB" Id="20B0457A"/>
+            <Parameter Type="Param" Library="ConB" Id="98FF61E5"/>
+            <Parameter Type="Param" Library="ConB" Id="4B75A0D0"/>
+        </Element>
+        <Element Type="Param" Id="BDA42C6E">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="E69E3B54"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="20B0457A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="AB83502F"/>
+            <Value>Conscription</Value>
+            <ValueType Type="gamelink"/>
+            <ValueGameType Type="User"/>
+        </Element>
+        <Element Type="Param" Id="98FF61E5">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="F8759050"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="7A32669F"/>
+        </Element>
+        <Element Type="Param" Id="4B75A0D0">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="619F5CB9"/>
+            <Value>UnlockTriggerName</Value>
+            <ValueType Type="userfield"/>
+            <ValueContext Value="Conscription"/>
+        </Element>
+        <Element Type="Category" Id="1DEDE39F">
+            <Item Type="Structure" Library="ConB" Id="9FE6C2CB"/>
+            <Item Type="Category" Library="ConB" Id="C582AA95"/>
+        </Element>
+        <Element Type="Structure" Id="9FE6C2CB">
+            <Variable Type="Variable" Library="ConB" Id="E76A8C10"/>
+            <Variable Type="Variable" Library="ConB" Id="69A04F1D"/>
+            <Variable Type="Variable" Library="ConB" Id="472F2AF9"/>
+            <Variable Type="Variable" Library="ConB" Id="A5483DB4"/>
+            <Variable Type="Variable" Library="ConB" Id="6FFDEF83"/>
+            <Variable Type="Variable" Library="ConB" Id="255E374D"/>
+            <Variable Type="Variable" Library="ConB" Id="C7BF2C90"/>
+        </Element>
+        <Element Type="Variable" Id="E76A8C10">
+            <VariableType>
+                <Type Value="string"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="9A772666"/>
+        </Element>
+        <Element Type="Param" Id="9A772666">
+            <ValueType Type="string"/>
+        </Element>
+        <Element Type="Variable" Id="69A04F1D">
+            <VariableType>
+                <Type Value="bool"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="A0BB06EA"/>
+        </Element>
+        <Element Type="Param" Id="A0BB06EA">
+            <Value>false</Value>
+            <ValueType Type="bool"/>
+        </Element>
+        <Element Type="Variable" Id="472F2AF9">
+            <VariableType>
+                <Type Value="preset"/>
+                <TypeElement Type="Preset" Library="ConB" Id="50816E1F"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="BC05DD85"/>
+        </Element>
+        <Element Type="Param" Id="BC05DD85">
+            <Preset Type="PresetValue" Library="ConB" Id="A2B19076"/>
+        </Element>
+        <Element Type="Variable" Id="A5483DB4">
+            <VariableType>
+                <Type Value="int"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="CC6606FD"/>
+        </Element>
+        <Element Type="Param" Id="CC6606FD">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Variable" Id="6FFDEF83">
+            <VariableType>
+                <Type Value="int"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="F24DAAA2"/>
+        </Element>
+        <Element Type="Param" Id="F24DAAA2">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Variable" Id="255E374D">
+            <VariableType>
+                <Type Value="gamelink"/>
+                <GameType Value="Map"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="23CB9B6D"/>
+        </Element>
+        <Element Type="Param" Id="23CB9B6D">
+            <Preset Type="PresetValue" Library="Ntve" Id="C9DCA6C0"/>
+        </Element>
+        <Element Type="Variable" Id="C7BF2C90">
+            <VariableType>
+                <Type Value="string"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="2813036D"/>
+        </Element>
+        <Element Type="Param" Id="2813036D">
+            <ValueType Type="string"/>
+        </Element>
+        <Element Type="Category" Id="C582AA95">
+            <Item Type="Category" Library="ConB" Id="BA72291C"/>
+            <Item Type="FunctionDef" Library="ConB" Id="DEBA933B"/>
+            <Item Type="FunctionDef" Library="ConB" Id="96DB070D"/>
+            <Item Type="FunctionDef" Library="ConB" Id="08FC6E2D"/>
+            <Item Type="FunctionDef" Library="ConB" Id="A7F2354F"/>
+            <Item Type="FunctionDef" Library="ConB" Id="FA61FEB0"/>
+            <Item Type="FunctionDef" Library="ConB" Id="EC8B7B9B"/>
+        </Element>
+        <Element Type="Category" Id="BA72291C">
+            <Item Type="Variable" Library="ConB" Id="1B13AA21"/>
+            <Item Type="Variable" Library="ConB" Id="5147B338"/>
+        </Element>
+        <Element Type="Variable" Id="1B13AA21">
+            <VariableType>
+                <Type Value="struct"/>
+                <TypeElement Type="Structure" Library="ConB" Id="9FE6C2CB"/>
+                <ArraySize Dim="0" Value="256"/>
+            </VariableType>
+        </Element>
+        <Element Type="Variable" Id="5147B338">
+            <VariableType>
+                <Type Value="int"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="43FFA36F"/>
+        </Element>
+        <Element Type="Param" Id="43FFA36F">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionDef" Id="DEBA933B">
+            <FlagAction/>
+            <Variable Type="Variable" Library="ConB" Id="65FF7B43"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="A1DFC605"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="A213AAC8"/>
+        </Element>
+        <Element Type="Variable" Id="65FF7B43">
+            <VariableType>
+                <Type Value="userinstance"/>
+                <UserType Value="Conscription"/>
+            </VariableType>
+        </Element>
+        <Element Type="FunctionCall" Id="A1DFC605">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="96DB070D"/>
+        </Element>
+        <Element Type="FunctionCall" Id="A213AAC8">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="A001814C"/>
+            <Parameter Type="Param" Library="ConB" Id="0B2D50E0"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="9BF8176F"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="EA693304"/>
+        </Element>
+        <Element Type="Param" Id="0B2D50E0">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="B106A1B3"/>
+            <Variable Type="Variable" Library="ConB" Id="65FF7B43"/>
+        </Element>
+        <Element Type="FunctionCall" Id="9BF8176F">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="FA61FEB0"/>
+            <SubFunctionType Type="SubFuncType" Library="ConB" Id="328ABA17"/>
+            <Parameter Type="Param" Library="ConB" Id="338D7553"/>
+            <Parameter Type="Param" Library="ConB" Id="7F4274D5"/>
+        </Element>
+        <Element Type="Param" Id="338D7553">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <Variable Type="Variable" Library="ConB" Id="1B13AA21"/>
+            <Array Type="Param" Library="ConB" Id="6C11701B"/>
+        </Element>
+        <Element Type="Param" Id="6C11701B">
+            <Variable Type="Variable" Library="ConB" Id="5147B338"/>
+        </Element>
+        <Element Type="Param" Id="7F4274D5">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="4656627A"/>
+            <Variable Type="Variable" Library="ConB" Id="65FF7B43"/>
+        </Element>
+        <Element Type="FunctionCall" Id="EA693304">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="A0F31305"/>
+            <SubFunctionType Type="SubFuncType" Library="ConB" Id="328ABA17"/>
+            <Parameter Type="Param" Library="ConB" Id="2ED18CEE"/>
+            <Parameter Type="Param" Library="ConB" Id="0D3C39E9"/>
+            <Parameter Type="Param" Library="ConB" Id="BDE7F62A"/>
+        </Element>
+        <Element Type="Param" Id="2ED18CEE">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="5BFF7323"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00000085"/>
+        </Element>
+        <Element Type="Param" Id="0D3C39E9">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6725C0EB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="BDE7F62A">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7B3B0884"/>
+            <Variable Type="Variable" Library="ConB" Id="5147B338"/>
+        </Element>
+        <Element Type="FunctionDef" Id="96DB070D">
+            <FlagAction/>
+            <Variable Type="Variable" Library="ConB" Id="7D6A9B5D"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="13261CE7"/>
+        </Element>
+        <Element Type="Variable" Id="7D6A9B5D">
+            <VariableType>
+                <Type Value="int"/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="A2BC2476"/>
+        </Element>
+        <Element Type="Param" Id="A2BC2476">
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="13261CE7">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="71596144"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="84180585"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="FCFD6EA9"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="B07CD648"/>
+        </Element>
+        <Element Type="FunctionCall" Id="84180585">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="A0F31305"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="A1B37466"/>
+            <Parameter Type="Param" Library="ConB" Id="B92E2E78"/>
+            <Parameter Type="Param" Library="ConB" Id="D27DE2BA"/>
+            <Parameter Type="Param" Library="ConB" Id="0AE2686E"/>
+        </Element>
+        <Element Type="Param" Id="B92E2E78">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="5BFF7323"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="00000086"/>
+        </Element>
+        <Element Type="Param" Id="D27DE2BA">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6725C0EB"/>
+            <Value>1</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="Param" Id="0AE2686E">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="7B3B0884"/>
+            <Variable Type="Variable" Library="ConB" Id="5147B338"/>
+        </Element>
+        <Element Type="FunctionCall" Id="FCFD6EA9">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="A7F2354F"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="A1B37466"/>
+            <Parameter Type="Param" Library="ConB" Id="7A3E9FB0"/>
+        </Element>
+        <Element Type="Param" Id="7A3E9FB0">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <Variable Type="Variable" Library="ConB" Id="1B13AA21"/>
+            <Array Type="Param" Library="ConB" Id="AC538707"/>
+        </Element>
+        <Element Type="Param" Id="AC538707">
+            <Variable Type="Variable" Library="ConB" Id="5147B338"/>
+        </Element>
+        <Element Type="FunctionCall" Id="B07CD648">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
+            <SubFunctionType Type="SubFuncType" Library="Ntve" Id="20298AEC"/>
+            <Parameter Type="Param" Library="ConB" Id="848A0AE3"/>
+            <Parameter Type="Param" Library="ConB" Id="1BA25886"/>
+            <Parameter Type="Param" Library="ConB" Id="78841C93"/>
+        </Element>
+        <Element Type="Param" Id="848A0AE3">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
+            <Variable Type="Variable" Library="ConB" Id="5147B338"/>
+        </Element>
+        <Element Type="Param" Id="1BA25886">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="40567BEE"/>
+        </Element>
+        <Element Type="Param" Id="78841C93">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionDef" Id="08FC6E2D">
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ConB" Id="B3386BBD"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="43F97248"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="42626BAC"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="E9D0AFA2"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="5F7E9E8F"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="433C1E33"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="99AE6B37"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="58DE099D"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="C2D2B42D"/>
+        </Element>
+        <Element Type="ParamDef" Id="B3386BBD">
+            <ParameterType>
+                <Type Value="struct"/>
+                <TypeElement Type="Structure" Library="ConB" Id="9FE6C2CB"/>
+            </ParameterType>
+        </Element>
+        <Element Type="ParamDef" Id="43F97248">
+            <ParameterType>
+                <Type Value="struct"/>
+                <TypeElement Type="Structure" Library="ConB" Id="9FE6C2CB"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="42626BAC">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="48DE94E1"/>
+            <Parameter Type="Param" Library="ConB" Id="85BF797E"/>
+        </Element>
+        <Element Type="Param" Id="48DE94E1">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="B3386BBD"/>
+            <StructMember Type="Param" Library="ConB" Id="66E16F61"/>
+        </Element>
+        <Element Type="Param" Id="66E16F61">
+            <Variable Type="Variable" Library="ConB" Id="E76A8C10"/>
+        </Element>
+        <Element Type="Param" Id="85BF797E">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="43F97248"/>
+            <StructMember Type="Param" Library="ConB" Id="3BFC70A7"/>
+        </Element>
+        <Element Type="Param" Id="3BFC70A7">
+            <Variable Type="Variable" Library="ConB" Id="E76A8C10"/>
+        </Element>
+        <Element Type="FunctionCall" Id="E9D0AFA2">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="7BEFF68C"/>
+            <Parameter Type="Param" Library="ConB" Id="B97E0771"/>
+        </Element>
+        <Element Type="Param" Id="7BEFF68C">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="B3386BBD"/>
+            <StructMember Type="Param" Library="ConB" Id="4D469C48"/>
+        </Element>
+        <Element Type="Param" Id="4D469C48">
+            <Variable Type="Variable" Library="ConB" Id="69A04F1D"/>
+        </Element>
+        <Element Type="Param" Id="B97E0771">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="43F97248"/>
+            <StructMember Type="Param" Library="ConB" Id="C6FA0B8A"/>
+        </Element>
+        <Element Type="Param" Id="C6FA0B8A">
+            <Variable Type="Variable" Library="ConB" Id="69A04F1D"/>
+        </Element>
+        <Element Type="FunctionCall" Id="5F7E9E8F">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="63D0D556"/>
+            <Parameter Type="Param" Library="ConB" Id="40EAD271"/>
+        </Element>
+        <Element Type="Param" Id="63D0D556">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="B3386BBD"/>
+            <StructMember Type="Param" Library="ConB" Id="890E5E46"/>
+        </Element>
+        <Element Type="Param" Id="890E5E46">
+            <Variable Type="Variable" Library="ConB" Id="472F2AF9"/>
+        </Element>
+        <Element Type="Param" Id="40EAD271">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="43F97248"/>
+            <StructMember Type="Param" Library="ConB" Id="A5498AE9"/>
+        </Element>
+        <Element Type="Param" Id="A5498AE9">
+            <Variable Type="Variable" Library="ConB" Id="472F2AF9"/>
+        </Element>
+        <Element Type="FunctionCall" Id="433C1E33">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="BB6534AB"/>
+            <Parameter Type="Param" Library="ConB" Id="D4241030"/>
+        </Element>
+        <Element Type="Param" Id="BB6534AB">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="B3386BBD"/>
+            <StructMember Type="Param" Library="ConB" Id="AAF2E3C6"/>
+        </Element>
+        <Element Type="Param" Id="AAF2E3C6">
+            <Variable Type="Variable" Library="ConB" Id="A5483DB4"/>
+        </Element>
+        <Element Type="Param" Id="D4241030">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="43F97248"/>
+            <StructMember Type="Param" Library="ConB" Id="40E878B4"/>
+        </Element>
+        <Element Type="Param" Id="40E878B4">
+            <Variable Type="Variable" Library="ConB" Id="A5483DB4"/>
+        </Element>
+        <Element Type="FunctionCall" Id="99AE6B37">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="707D3325"/>
+            <Parameter Type="Param" Library="ConB" Id="F452BD74"/>
+        </Element>
+        <Element Type="Param" Id="707D3325">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="B3386BBD"/>
+            <StructMember Type="Param" Library="ConB" Id="024ABD3B"/>
+        </Element>
+        <Element Type="Param" Id="024ABD3B">
+            <Variable Type="Variable" Library="ConB" Id="6FFDEF83"/>
+        </Element>
+        <Element Type="Param" Id="F452BD74">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="43F97248"/>
+            <StructMember Type="Param" Library="ConB" Id="0C35255C"/>
+        </Element>
+        <Element Type="Param" Id="0C35255C">
+            <Variable Type="Variable" Library="ConB" Id="6FFDEF83"/>
+        </Element>
+        <Element Type="FunctionCall" Id="58DE099D">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="C15C8A66"/>
+            <Parameter Type="Param" Library="ConB" Id="C003DE23"/>
+        </Element>
+        <Element Type="Param" Id="C15C8A66">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="B3386BBD"/>
+            <StructMember Type="Param" Library="ConB" Id="0BF7C3F8"/>
+        </Element>
+        <Element Type="Param" Id="0BF7C3F8">
+            <Variable Type="Variable" Library="ConB" Id="255E374D"/>
+        </Element>
+        <Element Type="Param" Id="C003DE23">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="43F97248"/>
+            <StructMember Type="Param" Library="ConB" Id="1B31C66C"/>
+        </Element>
+        <Element Type="Param" Id="1B31C66C">
+            <Variable Type="Variable" Library="ConB" Id="255E374D"/>
+        </Element>
+        <Element Type="FunctionCall" Id="C2D2B42D">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="EA5A1175"/>
+            <Parameter Type="Param" Library="ConB" Id="CF29FB83"/>
+        </Element>
+        <Element Type="Param" Id="EA5A1175">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="B3386BBD"/>
+            <StructMember Type="Param" Library="ConB" Id="B377EF1A"/>
+        </Element>
+        <Element Type="Param" Id="B377EF1A">
+            <Variable Type="Variable" Library="ConB" Id="C7BF2C90"/>
+        </Element>
+        <Element Type="Param" Id="CF29FB83">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="43F97248"/>
+            <StructMember Type="Param" Library="ConB" Id="3DA7C672"/>
+        </Element>
+        <Element Type="Param" Id="3DA7C672">
+            <Variable Type="Variable" Library="ConB" Id="C7BF2C90"/>
+        </Element>
+        <Element Type="FunctionDef" Id="A7F2354F">
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="E4428D6D"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="8E94D67E"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="28145BD3"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="2F0D009F"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="4BA586C7"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="05AA04E0"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="B8A1A3ED"/>
+        </Element>
+        <Element Type="ParamDef" Id="E76EA0F5">
+            <ParameterType>
+                <Type Value="struct"/>
+                <TypeElement Type="Structure" Library="ConB" Id="9FE6C2CB"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="E4428D6D">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="F26522A0"/>
+            <Parameter Type="Param" Library="ConB" Id="B9AA0170"/>
+        </Element>
+        <Element Type="Param" Id="F26522A0">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <StructMember Type="Param" Library="ConB" Id="13AC741C"/>
+        </Element>
+        <Element Type="Param" Id="13AC741C">
+            <Variable Type="Variable" Library="ConB" Id="E76A8C10"/>
+        </Element>
+        <Element Type="Param" Id="B9AA0170">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <ValueType Type="string"/>
+        </Element>
+        <Element Type="FunctionCall" Id="8E94D67E">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="7C0546ED"/>
+            <Parameter Type="Param" Library="ConB" Id="DF3F8490"/>
+        </Element>
+        <Element Type="Param" Id="7C0546ED">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <StructMember Type="Param" Library="ConB" Id="E4F74805"/>
+        </Element>
+        <Element Type="Param" Id="E4F74805">
+            <Variable Type="Variable" Library="ConB" Id="69A04F1D"/>
+        </Element>
+        <Element Type="Param" Id="DF3F8490">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Value>false</Value>
+            <ValueType Type="bool"/>
+        </Element>
+        <Element Type="FunctionCall" Id="28145BD3">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="7BBC4CB3"/>
+            <Parameter Type="Param" Library="ConB" Id="A6943EAE"/>
+        </Element>
+        <Element Type="Param" Id="7BBC4CB3">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <StructMember Type="Param" Library="ConB" Id="628588AC"/>
+        </Element>
+        <Element Type="Param" Id="628588AC">
+            <Variable Type="Variable" Library="ConB" Id="472F2AF9"/>
+        </Element>
+        <Element Type="Param" Id="A6943EAE">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Preset Type="PresetValue" Library="ConB" Id="A2B19076"/>
+        </Element>
+        <Element Type="FunctionCall" Id="2F0D009F">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="E24774D0"/>
+            <Parameter Type="Param" Library="ConB" Id="F02F0E0E"/>
+        </Element>
+        <Element Type="Param" Id="E24774D0">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <StructMember Type="Param" Library="ConB" Id="CB9DC924"/>
+        </Element>
+        <Element Type="Param" Id="CB9DC924">
+            <Variable Type="Variable" Library="ConB" Id="A5483DB4"/>
+        </Element>
+        <Element Type="Param" Id="F02F0E0E">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="4BA586C7">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="0D8A9053"/>
+            <Parameter Type="Param" Library="ConB" Id="328E9DE4"/>
+        </Element>
+        <Element Type="Param" Id="0D8A9053">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <StructMember Type="Param" Library="ConB" Id="9825736E"/>
+        </Element>
+        <Element Type="Param" Id="9825736E">
+            <Variable Type="Variable" Library="ConB" Id="6FFDEF83"/>
+        </Element>
+        <Element Type="Param" Id="328E9DE4">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Value>0</Value>
+            <ValueType Type="int"/>
+        </Element>
+        <Element Type="FunctionCall" Id="05AA04E0">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="F9501625"/>
+            <Parameter Type="Param" Library="ConB" Id="0B529A6B"/>
+        </Element>
+        <Element Type="Param" Id="F9501625">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <StructMember Type="Param" Library="ConB" Id="CF314735"/>
+        </Element>
+        <Element Type="Param" Id="CF314735">
+            <Variable Type="Variable" Library="ConB" Id="255E374D"/>
+        </Element>
+        <Element Type="Param" Id="0B529A6B">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="C9DCA6C0"/>
+        </Element>
+        <Element Type="FunctionCall" Id="B8A1A3ED">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="D5CCBDA9"/>
+            <Parameter Type="Param" Library="ConB" Id="AACD4750"/>
+        </Element>
+        <Element Type="Param" Id="D5CCBDA9">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="E76EA0F5"/>
+            <StructMember Type="Param" Library="ConB" Id="C106AC14"/>
+        </Element>
+        <Element Type="Param" Id="C106AC14">
+            <Variable Type="Variable" Library="ConB" Id="C7BF2C90"/>
+        </Element>
+        <Element Type="Param" Id="AACD4750">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <ValueType Type="string"/>
+        </Element>
+        <Element Type="FunctionDef" Id="FA61FEB0">
+            <FlagAction/>
+            <Parameter Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="307784C4"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="FAF42709"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="D7A344DF"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="9E4C5A24"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="A96DB4F6"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="51F7C9AC"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="A7A5E579"/>
+        </Element>
+        <Element Type="ParamDef" Id="FA9B2F09">
+            <ParameterType>
+                <Type Value="struct"/>
+                <TypeElement Type="Structure" Library="ConB" Id="9FE6C2CB"/>
+            </ParameterType>
+        </Element>
+        <Element Type="ParamDef" Id="4656627A">
+            <ParameterType>
+                <Type Value="userinstance"/>
+                <TypeElement Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+                <UserType Value="Conscription"/>
+            </ParameterType>
+        </Element>
+        <Element Type="FunctionCall" Id="307784C4">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="9498D2C7"/>
+            <Parameter Type="Param" Library="ConB" Id="89D24769"/>
+        </Element>
+        <Element Type="Param" Id="9498D2C7">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <StructMember Type="Param" Library="ConB" Id="9E40D6FE"/>
+        </Element>
+        <Element Type="Param" Id="9E40D6FE">
+            <Variable Type="Variable" Library="ConB" Id="E76A8C10"/>
+        </Element>
+        <Element Type="Param" Id="89D24769">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="39A0CBB9"/>
+        </Element>
+        <Element Type="FunctionCall" Id="39A0CBB9">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="28BF5097"/>
+            <Parameter Type="Param" Library="ConB" Id="B90BE194"/>
+        </Element>
+        <Element Type="Param" Id="B90BE194">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="CC9EB22D"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
+        </Element>
+        <Element Type="FunctionCall" Id="FAF42709">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="E98129D5"/>
+            <Parameter Type="Param" Library="ConB" Id="A0305FBF"/>
+        </Element>
+        <Element Type="Param" Id="E98129D5">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <StructMember Type="Param" Library="ConB" Id="7F0BC440"/>
+        </Element>
+        <Element Type="Param" Id="7F0BC440">
+            <Variable Type="Variable" Library="ConB" Id="69A04F1D"/>
+        </Element>
+        <Element Type="Param" Id="A0305FBF">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="B5CCE6DA"/>
+        </Element>
+        <Element Type="FunctionCall" Id="B5CCE6DA">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="7E23E60D"/>
+            <Parameter Type="Param" Library="ConB" Id="4A15C88E"/>
+        </Element>
+        <Element Type="Param" Id="4A15C88E">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="7C79D2F2"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
+        </Element>
+        <Element Type="FunctionCall" Id="D7A344DF">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="0CC324D8"/>
+            <Parameter Type="Param" Library="ConB" Id="34BE3077"/>
+        </Element>
+        <Element Type="Param" Id="0CC324D8">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <StructMember Type="Param" Library="ConB" Id="276DCC39"/>
+        </Element>
+        <Element Type="Param" Id="276DCC39">
+            <Variable Type="Variable" Library="ConB" Id="472F2AF9"/>
+        </Element>
+        <Element Type="Param" Id="34BE3077">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="F6B7F101"/>
+        </Element>
+        <Element Type="FunctionCall" Id="F6B7F101">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="8E705C2E"/>
+            <Parameter Type="Param" Library="ConB" Id="20357364"/>
+        </Element>
+        <Element Type="Param" Id="20357364">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="22D99DDF"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
+        </Element>
+        <Element Type="FunctionCall" Id="9E4C5A24">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="968DD941"/>
+            <Parameter Type="Param" Library="ConB" Id="60C58DCA"/>
+        </Element>
+        <Element Type="Param" Id="968DD941">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <StructMember Type="Param" Library="ConB" Id="3C8567A0"/>
+        </Element>
+        <Element Type="Param" Id="3C8567A0">
+            <Variable Type="Variable" Library="ConB" Id="A5483DB4"/>
+        </Element>
+        <Element Type="Param" Id="60C58DCA">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="2F23BA9A"/>
+        </Element>
+        <Element Type="FunctionCall" Id="2F23BA9A">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="EBD3E08C"/>
+            <Parameter Type="Param" Library="ConB" Id="F86B0159"/>
+        </Element>
+        <Element Type="Param" Id="F86B0159">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="AAB1BDD7"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
+        </Element>
+        <Element Type="FunctionCall" Id="A96DB4F6">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="B1E713FF"/>
+            <Parameter Type="Param" Library="ConB" Id="BCB2E5E0"/>
+        </Element>
+        <Element Type="Param" Id="B1E713FF">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <StructMember Type="Param" Library="ConB" Id="00487B56"/>
+        </Element>
+        <Element Type="Param" Id="00487B56">
+            <Variable Type="Variable" Library="ConB" Id="6FFDEF83"/>
+        </Element>
+        <Element Type="Param" Id="BCB2E5E0">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="DD55B747"/>
+        </Element>
+        <Element Type="FunctionCall" Id="DD55B747">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="24B86EBE"/>
+            <Parameter Type="Param" Library="ConB" Id="6064AA94"/>
+        </Element>
+        <Element Type="Param" Id="6064AA94">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="11A9249D"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
+        </Element>
+        <Element Type="FunctionCall" Id="51F7C9AC">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="8E53AE14"/>
+            <Parameter Type="Param" Library="ConB" Id="49E3157F"/>
+        </Element>
+        <Element Type="Param" Id="8E53AE14">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <StructMember Type="Param" Library="ConB" Id="98C3CA63"/>
+        </Element>
+        <Element Type="Param" Id="98C3CA63">
+            <Variable Type="Variable" Library="ConB" Id="255E374D"/>
+        </Element>
+        <Element Type="Param" Id="49E3157F">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="74C1DCB9"/>
+        </Element>
+        <Element Type="FunctionCall" Id="74C1DCB9">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="541FF487"/>
+            <Parameter Type="Param" Library="ConB" Id="935773A7"/>
+        </Element>
+        <Element Type="Param" Id="935773A7">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="AC8F049F"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
+        </Element>
+        <Element Type="FunctionCall" Id="A7A5E579">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="5BDC6A34"/>
+            <Parameter Type="Param" Library="ConB" Id="048AC3F8"/>
+            <Parameter Type="Param" Library="ConB" Id="7520C620"/>
+        </Element>
+        <Element Type="Param" Id="048AC3F8">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="B2E0AD39"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="FA9B2F09"/>
+            <StructMember Type="Param" Library="ConB" Id="DF984713"/>
+        </Element>
+        <Element Type="Param" Id="DF984713">
+            <Variable Type="Variable" Library="ConB" Id="C7BF2C90"/>
+        </Element>
+        <Element Type="Param" Id="7520C620">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="6578585C"/>
+            <FunctionCall Type="FunctionCall" Library="ConB" Id="AEDA4540"/>
+        </Element>
+        <Element Type="FunctionCall" Id="AEDA4540">
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="41695BD9"/>
+            <Parameter Type="Param" Library="ConB" Id="0D3185B1"/>
+        </Element>
+        <Element Type="Param" Id="0D3185B1">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="7A32669F"/>
+            <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
+        </Element>
+        <Element Type="FunctionDef" Id="EC8B7B9B">
+            <FlagAction/>
+            <FunctionCall Type="Comment" Library="ConB" Id="3A32BAFD"/>
+        </Element>
+        <Element Type="Comment" Id="3A32BAFD">
+            <Comment>
+                implement this after setter functions at some point
+            </Comment>
+        </Element>
         <Element Type="Category" Id="4675045E">
             <Item Type="FunctionDef" Library="ConB" Id="A001814C"/>
             <Item Type="FunctionDef" Library="ConB" Id="76020EBC"/>
@@ -4765,7 +5912,6 @@
         <Element Type="Category" Id="E698351E">
             <Item Type="Category" Library="ConB" Id="64A34D1F"/>
             <Item Type="FunctionDef" Library="ConB" Id="9CB867A1"/>
-            <Item Type="FunctionDef" Library="ConB" Id="8E705C2E"/>
             <Item Type="FunctionDef" Library="ConB" Id="437AF39E"/>
             <Item Type="FunctionDef" Library="ConB" Id="2471F462"/>
             <Item Type="FunctionDef" Library="ConB" Id="FA2FA1CA"/>
@@ -5136,66 +6282,6 @@
             <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
             <Value>0</Value>
             <ValueType Type="int"/>
-        </Element>
-        <Element Type="FunctionDef" Id="8E705C2E">
-            <FlagCall/>
-            <ReturnType>
-                <Type Value="preset"/>
-                <TypeElement Type="Preset" Library="ConB" Id="50816E1F"/>
-            </ReturnType>
-            <Parameter Type="ParamDef" Library="ConB" Id="22D99DDF"/>
-            <FunctionCall Type="FunctionCall" Library="ConB" Id="01477F01"/>
-        </Element>
-        <Element Type="ParamDef" Id="22D99DDF">
-            <ParameterType>
-                <Type Value="userinstance"/>
-                <TypeElement Type="ParamDef" Library="WoLC" Id="0F2889FA"/>
-                <UserType Value="Conscription"/>
-            </ParameterType>
-        </Element>
-        <Element Type="FunctionCall" Id="01477F01">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000097"/>
-            <Parameter Type="Param" Library="ConB" Id="D4AEC7DC"/>
-        </Element>
-        <Element Type="Param" Id="D4AEC7DC">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000488"/>
-            <FunctionCall Type="FunctionCall" Library="ConB" Id="51D912A9"/>
-        </Element>
-        <Element Type="FunctionCall" Id="51D912A9">
-            <FunctionDef Type="FunctionDef" Library="ConB" Id="4A9C11EF"/>
-            <Parameter Type="Param" Library="ConB" Id="B7CE360E"/>
-        </Element>
-        <Element Type="Param" Id="B7CE360E">
-            <ParameterDef Type="ParamDef" Library="ConB" Id="8819B572"/>
-            <FunctionCall Type="FunctionCall" Library="ConB" Id="F5B813EF"/>
-        </Element>
-        <Element Type="FunctionCall" Id="F5B813EF">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="1B79DE77"/>
-            <Parameter Type="Param" Library="ConB" Id="B25CF198"/>
-            <Parameter Type="Param" Library="ConB" Id="B353676D"/>
-            <Parameter Type="Param" Library="ConB" Id="28146CBB"/>
-            <Parameter Type="Param" Library="ConB" Id="4BD6F6E1"/>
-        </Element>
-        <Element Type="Param" Id="B25CF198">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ECEA677C"/>
-            <Value>1</Value>
-            <ValueType Type="int"/>
-        </Element>
-        <Element Type="Param" Id="B353676D">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="A65030BE"/>
-            <Value>Conscription</Value>
-            <ValueType Type="gamelink"/>
-            <ValueGameType Type="User"/>
-        </Element>
-        <Element Type="Param" Id="28146CBB">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="F33ACFAA"/>
-            <Parameter Type="ParamDef" Library="ConB" Id="22D99DDF"/>
-        </Element>
-        <Element Type="Param" Id="4BD6F6E1">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="344B79F1"/>
-            <Value>State</Value>
-            <ValueType Type="userfield"/>
-            <ValueContext Value="Conscription"/>
         </Element>
         <Element Type="FunctionDef" Id="437AF39E">
             <FlagAction/>

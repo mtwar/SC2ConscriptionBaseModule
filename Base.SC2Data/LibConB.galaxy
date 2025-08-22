@@ -14,6 +14,8 @@ void libConB_InitLibraries () {
 bool libConB_InitVariables_completed = false;
 
 void libConB_InitVariables () {
+    int init_i;
+
     if (libConB_InitVariables_completed) {
         return;
     }
@@ -23,6 +25,11 @@ void libConB_InitVariables () {
     libConB_gv_conscriptionBankData.lv_section = "";
     libConB_gv_conscriptionBankData.lv_key = "";
     libConB_gv_conscriptionBankSectionName = "";
+    for (init_i = 0; init_i <= 256; init_i += 1) {
+        libConB_gv_activeConscriptions[init_i].lv_id = "";
+        libConB_gv_activeConscriptions[init_i].lv_state = libConB_ge_ConscriptionUnitState_None;
+        libConB_gv_activeConscriptions[init_i].lv_unlockTriggerName = "";
+    }
 }
 
 // Presets
@@ -563,6 +570,128 @@ string libConB_gf_ValidConscriptionActionList () {
     return StringSub(lv_outputString, 3, StringLength(lv_outputString));
 }
 
+string libConB_gf_GetID (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (lp_conscription);
+}
+
+int libConB_gf_GetState (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return libConB_gf_ParseConscriptionUnitState(UserDataGetInt("Conscription", lp_conscription, "State", 1));
+}
+
+bool libConB_gf_GetUnlockWithConscription (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (UserDataGetInt("Conscription", lp_conscription, "UnlockWithConscription", 1) > 0);
+}
+
+int libConB_gf_GetPrice (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return UserDataGetInt("Conscription", lp_conscription, "Price", 1);
+}
+
+int libConB_gf_GetUnlockMissionNumber (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return UserDataGetInt("Conscription", lp_conscription, "UnlockMissionNumber", 1);
+}
+
+string libConB_gf_GetUnlockMap (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return UserDataGetGameLink("Conscription", lp_conscription, "UnlockMap", 1);
+}
+
+string libConB_gf_GetUnlockTriggerName (string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    return UserDataGetString("Conscription", lp_conscription, "UnlockTriggerName", 1);
+}
+
+void libConB_gf_RefreshActiveConscriptions () {
+    // Variable Declarations
+    string lv_conscription;
+
+    // Automatic Variable Declarations
+    int autoA213AAC8_ai;
+    int autoA213AAC8_ae;
+
+    // Variable Initialization
+
+    // Implementation
+    libConB_gf_ClearActiveConscriptions();
+    autoA213AAC8_ai = 1;
+    autoA213AAC8_ae = UserDataInstanceCount("Conscription")+1;
+    while (autoA213AAC8_ai < autoA213AAC8_ae) {
+        lv_conscription = UserDataInstance("Conscription", autoA213AAC8_ai);
+        autoA213AAC8_ai = autoA213AAC8_ai+1;
+        if (!libConB_gf_ConscriptionIsEnabled(lv_conscription)) {
+            continue;
+        }
+        libConB_gf_CopyConscriptionToRecord(libConB_gv_activeConscriptions[libConB_gv_activeConscriptionCount], lv_conscription);
+        libConB_gv_activeConscriptionCount += 1;
+    }
+}
+
+void libConB_gf_ClearActiveConscriptions () {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    while ((libConB_gv_activeConscriptionCount > 0)) {
+        libConB_gv_activeConscriptionCount -= 1;
+        libConB_gf_ClearConscriptionRecord(libConB_gv_activeConscriptions[libConB_gv_activeConscriptionCount]);
+    }
+}
+
+void libConB_gf_CopyConscriptionRecord (structref<libConB_gs_Conscription> lp_to, structref<libConB_gs_Conscription> lp_from) {
+    // Automatic Variable Declarations
+    // Implementation
+    lp_to.lv_id = lp_from.lv_id;
+    lp_to.lv_unlockWithConscription = lp_from.lv_unlockWithConscription;
+    lp_to.lv_state = lp_from.lv_state;
+    lp_to.lv_price = lp_from.lv_price;
+    lp_to.lv_unlockMissionNumber = lp_from.lv_unlockMissionNumber;
+    lp_to.lv_unlockMap = lp_from.lv_unlockMap;
+    lp_to.lv_unlockTriggerName = lp_from.lv_unlockTriggerName;
+}
+
+void libConB_gf_ClearConscriptionRecord (structref<libConB_gs_Conscription> lp_conscriptionRecord) {
+    // Automatic Variable Declarations
+    // Implementation
+    lp_conscriptionRecord.lv_id = "";
+    lp_conscriptionRecord.lv_unlockWithConscription = false;
+    lp_conscriptionRecord.lv_state = libConB_ge_ConscriptionUnitState_None;
+    lp_conscriptionRecord.lv_price = 0;
+    lp_conscriptionRecord.lv_unlockMissionNumber = 0;
+    lp_conscriptionRecord.lv_unlockMap = null;
+    lp_conscriptionRecord.lv_unlockTriggerName = "";
+}
+
+void libConB_gf_CopyConscriptionToRecord (structref<libConB_gs_Conscription> lp_record, string lp_conscription) {
+    // Automatic Variable Declarations
+    // Implementation
+    lp_record.lv_id = libConB_gf_GetID(lp_conscription);
+    lp_record.lv_unlockWithConscription = libConB_gf_GetUnlockWithConscription(lp_conscription);
+    lp_record.lv_state = libConB_gf_GetState(lp_conscription);
+    lp_record.lv_price = libConB_gf_GetPrice(lp_conscription);
+    lp_record.lv_unlockMissionNumber = libConB_gf_GetUnlockMissionNumber(lp_conscription);
+    lp_record.lv_unlockMap = libConB_gf_GetUnlockMap(lp_conscription);
+    lp_record.lv_unlockTriggerName = libConB_gf_GetUnlockTriggerName(lp_conscription);
+}
+
+void libConB_gf_CopyRecordToConscription () {
+    // Automatic Variable Declarations
+    // Implementation
+}
+
 int libConB_gf_ParseConscriptionUnitState (int lp_stateValue) {
     // Automatic Variable Declarations
     int auto840DF310_val;
@@ -609,12 +738,6 @@ bool libConB_gf_ConscriptionIsEnabled (string lp_conscription) {
     return (UserDataGetInt("Conscription", lp_conscription, "UnlockWithConscription", 1) > 0);
 }
 
-int libConB_gf_GetConscriptionState (string lp_conscription) {
-    // Automatic Variable Declarations
-    // Implementation
-    return libConB_gf_ParseConscriptionUnitState(UserDataGetInt("Conscription", lp_conscription, "State", 1));
-}
-
 void libConB_gf_SetConscriptionState (string lp_conscription, int lp_state) {
     // Automatic Variable Declarations
     // Implementation
@@ -649,7 +772,7 @@ int libConB_gf_GetConscriptionUnitState (string lp_unitType) {
 
     // Implementation
     if (!libConB_gf_NullOrEmptyString(lv_conscription)) {
-        lv_state = libConB_gf_GetConscriptionState(lv_conscription);
+        lv_state = libConB_gf_GetState(lv_conscription);
     }
     return lv_state;
 }

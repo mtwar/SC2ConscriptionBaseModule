@@ -34,12 +34,24 @@ struct libConB_gs_ConscriptionBankData {
     int lv_state;
 };
 
+struct libConB_gs_Conscription {
+    string lv_id;
+    bool lv_unlockWithConscription;
+    int lv_state;
+    int lv_price;
+    int lv_unlockMissionNumber;
+    string lv_unlockMap;
+    string lv_unlockTriggerName;
+};
+
 // Variable Declarations
 int libConB_gv_creditsAvailable;
 libConB_gs_ConscriptionBankData libConB_gv_conscriptionBankData;
 string libConB_gv_conscriptionBankSectionName;
 string libConB_gv_conscriptionBankMap;
 bank libConB_gv_conscriptionCampaignBank;
+libConB_gs_Conscription[257] libConB_gv_activeConscriptions;
+int libConB_gv_activeConscriptionCount;
 string libConB_gv_techTreeArmyCategory;
 bool libConB_gv_techTreeEnable;
 string libConB_gv_currentTriggerConscription;
@@ -78,10 +90,22 @@ bank libConB_gf_GetCampaignBank ();
 string libConB_gf_GetConscriptionBankSection ();
 string libConB_gf_ConscriptionCheatHandler (string lp_inputWords);
 string libConB_gf_ValidConscriptionActionList ();
+string libConB_gf_GetID (string lp_conscription);
+int libConB_gf_GetState (string lp_conscription);
+bool libConB_gf_GetUnlockWithConscription (string lp_conscription);
+int libConB_gf_GetPrice (string lp_conscription);
+int libConB_gf_GetUnlockMissionNumber (string lp_conscription);
+string libConB_gf_GetUnlockMap (string lp_conscription);
+string libConB_gf_GetUnlockTriggerName (string lp_conscription);
+void libConB_gf_RefreshActiveConscriptions ();
+void libConB_gf_ClearActiveConscriptions ();
+void libConB_gf_CopyConscriptionRecord (structref<libConB_gs_Conscription> lp_to, structref<libConB_gs_Conscription> lp_from);
+void libConB_gf_ClearConscriptionRecord (structref<libConB_gs_Conscription> lp_conscriptionRecord);
+void libConB_gf_CopyConscriptionToRecord (structref<libConB_gs_Conscription> lp_record, string lp_conscription);
+void libConB_gf_CopyRecordToConscription ();
 int libConB_gf_ParseConscriptionUnitState (int lp_stateValue);
 int libConB_gf_ParseConscriptionUnitStateString (string lp_stateName);
 bool libConB_gf_ConscriptionIsEnabled (string lp_conscription);
-int libConB_gf_GetConscriptionState (string lp_conscription);
 void libConB_gf_SetConscriptionState (string lp_conscription, int lp_state);
 bool libConB_gf_ConscriptionIsEnabledForUnit (string lp_unitType);
 int libConB_gf_GetConscriptionUnitState (string lp_unitType);
