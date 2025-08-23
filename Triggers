@@ -2,6 +2,7 @@
 <TriggerData>
     <Library Id="ConB">
         <Root>
+            <Item Type="Category" Library="ConB" Id="4C225A61"/>
             <Item Type="Category" Library="ConB" Id="3AA33D1C"/>
             <Item Type="Category" Library="ConB" Id="8803FD6A"/>
             <Item Type="Category" Library="ConB" Id="FA2B89D7"/>
@@ -12,6 +13,8 @@
             <Item Type="Category" Library="ConB" Id="5596C054"/>
             <Item Type="Category" Library="ConB" Id="C978E93F"/>
         </Root>
+        <Element Type="Category" Id="4C225A61">
+        </Element>
         <Element Type="Category" Id="3AA33D1C">
             <Item Type="Category" Library="ConB" Id="8439DD18"/>
             <Item Type="Category" Library="ConB" Id="0BF759F9"/>
@@ -5178,14 +5181,26 @@
             <Item Type="FunctionDef" Library="ConB" Id="EC8B7B9B"/>
         </Element>
         <Element Type="Category" Id="BA72291C">
+            <Item Type="Variable" Library="ConB" Id="6657422E"/>
             <Item Type="Variable" Library="ConB" Id="1B13AA21"/>
             <Item Type="Variable" Library="ConB" Id="5147B338"/>
+        </Element>
+        <Element Type="Variable" Id="6657422E">
+            <VariableType>
+                <Type Value="int"/>
+                <Constant/>
+            </VariableType>
+            <Value Type="Param" Library="ConB" Id="2FFBC93C"/>
+        </Element>
+        <Element Type="Param" Id="2FFBC93C">
+            <Value>256</Value>
+            <ValueType Type="int"/>
         </Element>
         <Element Type="Variable" Id="1B13AA21">
             <VariableType>
                 <Type Value="struct"/>
                 <TypeElement Type="Structure" Library="ConB" Id="9FE6C2CB"/>
-                <ArraySize Dim="0" Value="256"/>
+                <ArraySize Dim="0" Type="Variable" Library="ConB" Id="6657422E"/>
             </VariableType>
         </Element>
         <Element Type="Variable" Id="5147B338">
@@ -5846,6 +5861,7 @@
             <Parameter Type="ParamDef" Library="ConB" Id="4656627A"/>
         </Element>
         <Element Type="FunctionDef" Id="EC8B7B9B">
+            <Disabled/>
             <FlagAction/>
             <FunctionCall Type="Comment" Library="ConB" Id="3A32BAFD"/>
         </Element>
@@ -6237,51 +6253,12 @@
             <FunctionCall Type="FunctionCall" Library="ConB" Id="6D696E76"/>
         </Element>
         <Element Type="FunctionCall" Id="6D696E76">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
-            <Parameter Type="Param" Library="ConB" Id="524571C0"/>
-            <Parameter Type="Param" Library="ConB" Id="0EDF3A2A"/>
-            <Parameter Type="Param" Library="ConB" Id="A4B73A12"/>
+            <FunctionDef Type="FunctionDef" Library="ConB" Id="7E23E60D"/>
+            <Parameter Type="Param" Library="ConB" Id="1F1F6C98"/>
         </Element>
-        <Element Type="Param" Id="524571C0">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
-            <FunctionCall Type="FunctionCall" Library="ConB" Id="CFA7C3DC"/>
-        </Element>
-        <Element Type="FunctionCall" Id="CFA7C3DC">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="1B79DE77"/>
-            <Parameter Type="Param" Library="ConB" Id="B32DC9CD"/>
-            <Parameter Type="Param" Library="ConB" Id="31D45F6D"/>
-            <Parameter Type="Param" Library="ConB" Id="8DB5AC5C"/>
-            <Parameter Type="Param" Library="ConB" Id="2D14874C"/>
-        </Element>
-        <Element Type="Param" Id="B32DC9CD">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ECEA677C"/>
-            <Value>1</Value>
-            <ValueType Type="int"/>
-        </Element>
-        <Element Type="Param" Id="31D45F6D">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="A65030BE"/>
-            <Value>Conscription</Value>
-            <ValueType Type="gamelink"/>
-            <ValueGameType Type="User"/>
-        </Element>
-        <Element Type="Param" Id="8DB5AC5C">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="F33ACFAA"/>
+        <Element Type="Param" Id="1F1F6C98">
+            <ParameterDef Type="ParamDef" Library="ConB" Id="7C79D2F2"/>
             <Parameter Type="ParamDef" Library="ConB" Id="1A581D1B"/>
-        </Element>
-        <Element Type="Param" Id="2D14874C">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="344B79F1"/>
-            <Value>UnlockWithConscription</Value>
-            <ValueType Type="userfield"/>
-            <ValueContext Value="Conscription"/>
-        </Element>
-        <Element Type="Param" Id="0EDF3A2A">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="40567BEE"/>
-        </Element>
-        <Element Type="Param" Id="A4B73A12">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
-            <Value>0</Value>
-            <ValueType Type="int"/>
         </Element>
         <Element Type="FunctionDef" Id="437AF39E">
             <FlagAction/>

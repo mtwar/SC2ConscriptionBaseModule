@@ -26,6 +26,9 @@ const int libConB_ge_ConscriptionUnitState_Purchased = 2;
 const int libConB_ge_ConscriptionUnitState_None = 3;
 string libConB_ge_ConscriptionUnitState_Ident (int lp_val);
 
+// Constants
+const int libConB_gv_activeConscriptionsArraySize = 256;
+
 // Structures
 struct libConB_gs_ConscriptionBankData {
     bank lv_bank;
@@ -50,7 +53,7 @@ libConB_gs_ConscriptionBankData libConB_gv_conscriptionBankData;
 string libConB_gv_conscriptionBankSectionName;
 string libConB_gv_conscriptionBankMap;
 bank libConB_gv_conscriptionCampaignBank;
-libConB_gs_Conscription[257] libConB_gv_activeConscriptions;
+libConB_gs_Conscription[libConB_gv_activeConscriptionsArraySize + 1] libConB_gv_activeConscriptions;
 int libConB_gv_activeConscriptionCount;
 string libConB_gv_techTreeArmyCategory;
 bool libConB_gv_techTreeEnable;
@@ -102,7 +105,6 @@ void libConB_gf_ClearActiveConscriptions ();
 void libConB_gf_CopyConscriptionRecord (structref<libConB_gs_Conscription> lp_to, structref<libConB_gs_Conscription> lp_from);
 void libConB_gf_ClearConscriptionRecord (structref<libConB_gs_Conscription> lp_conscriptionRecord);
 void libConB_gf_CopyConscriptionToRecord (structref<libConB_gs_Conscription> lp_record, string lp_conscription);
-void libConB_gf_CopyRecordToConscription ();
 int libConB_gf_ParseConscriptionUnitState (int lp_stateValue);
 int libConB_gf_ParseConscriptionUnitStateString (string lp_stateName);
 bool libConB_gf_ConscriptionIsEnabled (string lp_conscription);
